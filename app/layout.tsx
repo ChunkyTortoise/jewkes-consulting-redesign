@@ -14,8 +14,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'AI Integration Strategy | The Jewkes Firm',
-  description: 'AI Integration Strategy prepared by OpenClaw Consulting for The Jewkes Firm, LLC — Plaintiff Personal Injury & Medical Malpractice. 42 AI use cases, 11 integrated tools, 10 knowledge databases.',
-  generator: 'OpenClaw Consulting',
+  description: 'AI Integration Strategy prepared by Cayman Roden for The Jewkes Firm, LLC — Plaintiff Personal Injury & Medical Malpractice. 42 AI use cases, 11 integrated tools, 10 knowledge databases.',
+  generator: 'Cayman Roden',
   icons: {
     icon: [
       {

@@ -170,7 +170,7 @@ export function OpenClawSection() {
           <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold/60" />
           <p className="font-sans text-xs leading-relaxed text-primary-foreground/50">
             <span className="font-semibold text-primary-foreground/70">Disclosure:</span>{" "}
-            OpenClaw Consulting is my firm. I recommend this configuration because I believe it fits &mdash; weigh that accordingly.
+            I recommend this configuration because I believe it fits &mdash; weigh that accordingly.
           </p>
         </div>
 
