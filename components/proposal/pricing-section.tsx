@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 import { cn } from "@/lib/utils"
-import { Check, ArrowRight, Clock, ArrowDown } from "lucide-react"
+import { Check, Clock, ArrowDown } from "lucide-react"
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const tiers = [
   {
@@ -98,37 +99,43 @@ const timelineSteps = [
 
 export function PricingSection() {
   const [showFullTable, setShowFullTable] = useState(false)
+  const headerRef = useScrollReveal()
+  const tiersRef = useScrollReveal()
+  const timelineRef = useScrollReveal()
+  const tableRef = useScrollReveal()
 
   return (
     <section id="pricing" className="bg-surface px-6 py-24">
       <div className="mx-auto max-w-6xl">
-        <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          Section 6 &middot; Engagement & Pricing
-        </p>
-        <h2 className="mb-5 font-serif text-3xl font-bold text-navy md:text-4xl text-balance">
-          Three engagement tiers. Pick what fits.
-        </h2>
-        <p className="mb-8 max-w-2xl font-sans text-sm leading-relaxed text-muted-foreground">
-          No locked packages. No required order. Start with what solves your most expensive
-          problem first. Each tier includes configuration, integration, training, staff walkthrough
-          (60-90 min), system documentation, and 30-day post-launch support.
-        </p>
+        <div ref={headerRef}>
+          <p className="reveal mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+            Section 6 &middot; Engagement &amp; Pricing
+          </p>
+          <h2 className="reveal reveal-delay-1 mb-5 font-serif text-3xl font-bold text-navy text-balance md:text-4xl">
+            Three engagement tiers. Pick what fits.
+          </h2>
+          <p className="reveal reveal-delay-2 mb-8 max-w-2xl font-sans text-sm leading-relaxed text-muted-foreground">
+            No locked packages. No required order. Start with what solves your most expensive
+            problem first. Each tier includes configuration, integration, training, staff walkthrough
+            (60-90 min), system documentation, and 30-day post-launch support.
+          </p>
+        </div>
 
         {/* Tier cards — visually differentiated */}
-        <div className="mb-16 grid gap-4 lg:grid-cols-3">
-          {tiers.map((tier) => {
+        <div className="mb-16 grid gap-4 lg:grid-cols-3" ref={tiersRef}>
+          {tiers.map((tier, i) => {
             const isCore = tier.id === "core"
             const isFullStack = tier.id === "full-stack"
             return (
               <div
                 key={tier.id}
                 className={cn(
-                  "relative flex flex-col rounded-sm border p-6 transition-all",
+                  `reveal reveal-delay-${i + 1} relative flex flex-col rounded-sm border p-6 transition-all`,
                   isCore
-                    ? "border-gold bg-navy text-primary-foreground shadow-lg"
+                    ? "border-gold bg-navy text-primary-foreground shadow-xl"
                     : isFullStack
-                    ? "border-navy bg-surface-alt"
-                    : "border-border bg-card"
+                    ? "border-navy bg-surface-alt hover:border-navy/80 hover:shadow-md"
+                    : "border-border bg-card hover:border-gold/20 hover:shadow-md"
                 )}
               >
                 {/* Top accent bar */}
@@ -232,19 +239,22 @@ export function PricingSection() {
         </div>
 
         {/* Project timeline */}
-        <div className="mb-12">
-          <p className="mb-6 font-sans text-xs font-semibold uppercase tracking-[0.15em] text-navy/60">
+        <div className="mb-12" ref={timelineRef}>
+          <p className="reveal mb-6 font-sans text-xs font-semibold uppercase tracking-[0.15em] text-navy/60">
             Engagement Timeline
           </p>
           <div className="flex flex-col gap-0">
             {timelineSteps.map((step, i) => (
-              <div key={step.week} className="flex gap-4">
+              <div
+                key={step.week}
+                className={`reveal reveal-delay-${i + 1} flex gap-4`}
+              >
                 <div className="flex flex-col items-center">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border-2 border-gold bg-card">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border-2 border-gold bg-card shadow-sm">
                     <span className="font-mono text-[10px] font-bold text-gold">{i + 1}</span>
                   </div>
                   {i < timelineSteps.length - 1 && (
-                    <div className="h-full w-px bg-border" />
+                    <div className="h-full w-px bg-gold/20" />
                   )}
                 </div>
                 <div className="pb-6">
@@ -258,7 +268,7 @@ export function PricingSection() {
         </div>
 
         {/* Cost reference table */}
-        <div className="overflow-hidden rounded-sm border border-border">
+        <div className="overflow-hidden rounded-sm border border-border" ref={tableRef}>
           <div className="flex items-center justify-between bg-navy p-4">
             <div>
               <p className="font-sans text-sm font-bold text-primary-foreground">Monthly Cost Reference</p>

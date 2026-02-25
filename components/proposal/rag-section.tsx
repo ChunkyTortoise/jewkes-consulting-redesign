@@ -1,4 +1,8 @@
+"use client"
+
 import { Database, Search as SearchIcon, Swords } from "lucide-react"
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
+import { TypewriterText } from "@/components/proposal/typewriter-text"
 
 const ragDatabases = [
   {
@@ -82,43 +86,65 @@ const counterIntelDatabases = [
   },
 ]
 
+// Featured queries for the typewriter showcase at bottom
+const featuredQueries = [
+  "What does Dr. Marsh say about permanent impairment in lumbar cases for State Farm?",
+  "How does Allstate respond to soft-tissue demands over $75K in Spalding County?",
+  "What have Troup County juries awarded for rear-end cases with lumbar fusion?",
+  "Draft a demand for a rear-end herniated disc case with $85K in medical specials and a prior soft-tissue claim.",
+]
+
 export function RAGSection() {
+  const headerRef = useScrollReveal()
+  const mainGridRef = useScrollReveal()
+  const counterIntelRef = useScrollReveal()
+  const queriesRef = useScrollReveal()
+
   return (
-    <section id="rag" className="bg-navy px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+    <section id="rag" className="relative bg-navy px-6 py-24">
+      {/* Subtle dot-grid texture on dark canvas */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.025]"
+        style={{
+          backgroundImage: "radial-gradient(circle, #c8a84b 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-6xl">
         {/* Section header */}
-        <div className="mb-4">
-          <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+        <div className="mb-4" ref={headerRef}>
+          <p className="reveal mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
             Section 5 &middot; Practice Knowledge Databases
           </p>
-          <h2 className="mb-5 font-serif text-3xl font-bold text-primary-foreground md:text-4xl text-balance">
+          <h2 className="reveal reveal-delay-1 mb-5 font-serif text-3xl font-bold text-primary-foreground text-balance md:text-4xl">
             Gets smarter with every transcript, matter, and article you add.
           </h2>
-          <p className="mb-2 max-w-2xl font-sans text-sm leading-relaxed text-primary-foreground/60">
+          <p className="reveal reveal-delay-2 mb-2 max-w-2xl font-sans text-sm leading-relaxed text-primary-foreground/60">
             These are fixed-cost builds with minimal running costs — not subscriptions.
             They compound in value over time and represent proprietary intelligence
             no other plaintiff attorney in your market has.
           </p>
-          <p className="max-w-2xl font-sans text-xs leading-relaxed text-primary-foreground/40">
+          <p className="reveal reveal-delay-3 max-w-2xl font-sans text-xs leading-relaxed text-primary-foreground/35">
             This is where the original conversation started. Every tool above is an off-the-shelf subscription.
             The items below are different: AI systems built specifically for your practice, using your cases,
             your experts, your venues, and your arguments as the training material.
           </p>
         </div>
 
-        <div className="mb-12 flex items-center gap-2">
-          <Database className="h-4 w-4 text-gold/60" />
-          <p className="font-sans text-xs text-primary-foreground/40">
+        <div className="reveal mb-12 flex items-center gap-2">
+          <Database className="h-4 w-4 text-gold/50" />
+          <p className="font-sans text-xs text-primary-foreground/35">
             Built on Claude API + vector database + web query interface
           </p>
         </div>
 
-        {/* Main knowledge databases */}
-        <div className="mb-12 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {ragDatabases.map((db) => (
+        {/* Main knowledge databases — staggered scroll-reveal grid */}
+        <div className="mb-12 grid gap-3 md:grid-cols-2 lg:grid-cols-3" ref={mainGridRef}>
+          {ragDatabases.map((db, i) => (
             <div
               key={db.name}
-              className="group flex flex-col rounded-sm border border-navy-mid bg-navy-mid/15 p-5 transition-colors hover:border-gold/20"
+              className={`reveal reveal-delay-${(i % 4) + 1} group flex flex-col rounded-sm border border-navy-mid bg-white/[0.03] p-5 transition-all hover:border-gold/25 hover:bg-white/[0.05]`}
             >
               <div className="mb-1 flex items-start justify-between gap-2">
                 <p className="font-sans text-sm font-bold text-primary-foreground">{db.name}</p>
@@ -132,18 +158,19 @@ export function RAGSection() {
                 <span className="font-sans text-xs font-semibold text-gold">{db.cost}</span>
                 {db.buildCost && (
                   <>
-                    <span className="text-primary-foreground/20">&middot;</span>
-                    <span className="font-sans text-[10px] text-primary-foreground/40">Build: {db.buildCost}</span>
+                    <span className="text-primary-foreground/15">&middot;</span>
+                    <span className="font-sans text-[10px] text-primary-foreground/35">Build: {db.buildCost}</span>
                   </>
                 )}
               </div>
-              <p className="mb-4 flex-1 font-sans text-xs leading-relaxed text-primary-foreground/50">
+              <p className="mb-4 flex-1 font-sans text-xs leading-relaxed text-primary-foreground/45">
                 {db.description}
               </p>
+              {/* Query preview — reveal the typewriter only when card is in view */}
               <div className="border-t border-navy-mid pt-3">
                 <div className="flex items-start gap-2">
-                  <SearchIcon className="mt-0.5 h-3 w-3 shrink-0 text-gold/60" />
-                  <p className="font-sans text-[11px] italic leading-relaxed text-gold-light/60">
+                  <SearchIcon className="mt-0.5 h-3 w-3 shrink-0 text-gold/50" />
+                  <p className="font-sans text-[11px] italic leading-relaxed text-gold-light/50">
                     {'"'}{db.query}{'"'}
                   </p>
                 </div>
@@ -153,23 +180,25 @@ export function RAGSection() {
         </div>
 
         {/* Defense Counter-Intelligence subsection */}
-        <div className="mb-6 flex items-center gap-3">
-          <Swords className="h-5 w-5 text-gold" />
-          <div>
-            <p className="font-sans text-xs font-bold uppercase tracking-[0.15em] text-gold">
-              Defense Counter-Intelligence
-            </p>
-            <p className="font-sans text-[11px] text-primary-foreground/40">
-              Built from your years on the other side — no other plaintiff firm in your market has this
-            </p>
+        <div className="mb-6 flex items-center gap-3" ref={counterIntelRef}>
+          <div className="reveal flex items-center gap-3">
+            <Swords className="h-5 w-5 text-gold" />
+            <div>
+              <p className="font-sans text-xs font-bold uppercase tracking-[0.15em] text-gold">
+                Defense Counter-Intelligence
+              </p>
+              <p className="font-sans text-[11px] text-primary-foreground/35">
+                Built from your years on the other side — no other plaintiff firm in your market has this
+              </p>
+            </div>
           </div>
         </div>
 
         <div className="grid gap-3 md:grid-cols-2">
-          {counterIntelDatabases.map((db) => (
+          {counterIntelDatabases.map((db, i) => (
             <div
               key={db.name}
-              className="flex flex-col rounded-sm border border-gold/20 bg-gold/[0.04] p-5 transition-colors hover:border-gold/30"
+              className={`reveal reveal-delay-${i + 1} flex flex-col rounded-sm border border-gold/20 bg-gold/[0.04] p-5 transition-all hover:border-gold/35 hover:bg-gold/[0.07]`}
             >
               <div className="mb-1 flex items-start justify-between gap-2">
                 <p className="font-sans text-sm font-bold text-primary-foreground">{db.name}</p>
@@ -178,13 +207,13 @@ export function RAGSection() {
                 </span>
               </div>
               <p className="mb-2 font-sans text-xs font-semibold text-gold">{db.cost}</p>
-              <p className="mb-4 flex-1 font-sans text-xs leading-relaxed text-primary-foreground/50">
+              <p className="mb-4 flex-1 font-sans text-xs leading-relaxed text-primary-foreground/45">
                 {db.description}
               </p>
               <div className="border-t border-gold/10 pt-3">
                 <div className="flex items-start gap-2">
-                  <SearchIcon className="mt-0.5 h-3 w-3 shrink-0 text-gold/60" />
-                  <p className="font-sans text-[11px] italic leading-relaxed text-gold-light/60">
+                  <SearchIcon className="mt-0.5 h-3 w-3 shrink-0 text-gold/50" />
+                  <p className="font-sans text-[11px] italic leading-relaxed text-gold-light/50">
                     {'"'}{db.query}{'"'}
                   </p>
                 </div>
@@ -193,22 +222,24 @@ export function RAGSection() {
           ))}
         </div>
 
-        {/* Sample queries section from Strategy Overview */}
-        <div className="mt-12 rounded-sm border border-navy-mid bg-navy-mid/20 p-6">
+        {/* Typewriter query showcase */}
+        <div className="reveal mt-12 rounded-sm border border-navy-mid bg-white/[0.03] p-6" ref={queriesRef}>
           <p className="mb-4 font-sans text-xs font-bold uppercase tracking-widest text-gold">
             What You Can Ask It
           </p>
           <div className="grid gap-2 md:grid-cols-2">
-            {[
-              "What does Dr. Marsh say about permanent impairment in lumbar cases for State Farm?",
-              "How does Allstate respond to soft-tissue demands over $75K in Spalding County?",
-              "What have Troup County juries awarded for rear-end cases with lumbar fusion?",
-              "Draft a demand for a rear-end herniated disc case with $85K in medical specials and a prior soft-tissue claim.",
-            ].map((q) => (
-              <div key={q} className="flex items-start gap-2 rounded-sm bg-navy-mid/20 p-3">
-                <SearchIcon className="mt-0.5 h-3 w-3 shrink-0 text-gold/40" />
-                <p className="font-sans text-[11px] italic leading-relaxed text-primary-foreground/50">
-                  {'"'}{q}{'"'}
+            {featuredQueries.map((q, i) => (
+              <div key={q} className="flex items-start gap-2 rounded-sm bg-white/[0.03] p-3 border border-navy-mid/60">
+                <SearchIcon className="mt-0.5 h-3 w-3 shrink-0 text-gold/35" />
+                <p className="font-sans text-[11px] italic leading-relaxed text-primary-foreground/45">
+                  {'"'}
+                  <TypewriterText
+                    text={q}
+                    speed={22}
+                    startDelay={i * 400 + 300}
+                    className="not-italic text-primary-foreground/45"
+                  />
+                  {'"'}
                 </p>
               </div>
             ))}

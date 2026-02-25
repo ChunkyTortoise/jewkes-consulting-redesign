@@ -1,4 +1,7 @@
+"use client"
+
 import { Clock, FileText, Shield, AlertTriangle, Stethoscope, XCircle, Info } from "lucide-react"
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const problems = [
   {
@@ -70,20 +73,23 @@ const outOfScope = [
 ]
 
 export function OpportunitySection() {
+  const sectionRef = useScrollReveal()
+  const cardsRef = useScrollReveal()
+
   return (
-    <section id="opportunity" className="bg-surface px-6 py-24">
+    <section id="opportunity" className="bg-surface px-6 py-24" ref={sectionRef}>
       <div className="mx-auto max-w-6xl">
         {/* Section header */}
         <div className="mb-16 max-w-3xl">
-          <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+          <p className="reveal mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
             Section 1 &middot; The Opportunity
           </p>
-          <h2 className="mb-5 font-serif text-3xl font-bold text-navy md:text-4xl text-balance">
+          <h2 className="reveal reveal-delay-1 mb-5 font-serif text-3xl font-bold text-navy text-balance md:text-4xl">
             The defense side has been on this stack for two years.
           </h2>
 
-          {/* Six months vision as prominent blockquote */}
-          <div className="mb-6 rounded-sm border-l-4 border-gold bg-gold/[0.04] px-6 py-5">
+          {/* Six months vision blockquote — stronger left rule */}
+          <div className="reveal reveal-delay-2 mb-6 rounded-sm border-l-4 border-gold bg-gold/[0.04] px-6 py-5 shadow-sm">
             <p className="font-serif text-base leading-relaxed text-navy md:text-lg">
               <span className="font-bold">Six months from now,</span> The Jewkes Firm looks like this:
               potential clients who call at 11pm get an immediate response &mdash; qualified, documented,
@@ -94,7 +100,7 @@ export function OpportunitySection() {
             </p>
           </div>
 
-          <p className="font-sans text-sm leading-relaxed text-muted-foreground">
+          <p className="reveal reveal-delay-3 font-sans text-sm leading-relaxed text-muted-foreground">
             AI-assisted record review, deposition analytics, and litigation intelligence tools have been
             standard infrastructure at well-run defense firms since 2022-2023. This isn{"'"}t about catching
             up to other plaintiff firms. It{"'"}s about reaching parity with the defense side &mdash; then using your
@@ -102,21 +108,22 @@ export function OpportunitySection() {
           </p>
         </div>
 
-        {/* Five problems */}
-        <div className="mb-8">
-          <p className="mb-6 font-sans text-xs font-semibold uppercase tracking-[0.15em] text-navy/60">
+        {/* Five problems header */}
+        <div className="reveal mb-8">
+          <p className="font-sans text-xs font-semibold uppercase tracking-[0.15em] text-navy/60">
             Five Problems This Solves
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {problems.map((p) => (
+        {/* Problem cards with staggered reveal */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" ref={cardsRef}>
+          {problems.map((p, i) => (
             <div
               key={p.title}
-              className="group flex flex-col rounded-sm border border-border bg-card p-5 transition-all hover:border-gold/30 hover:shadow-sm"
+              className={`reveal reveal-delay-${(i % 4) + 1} group flex flex-col rounded-sm border border-border bg-card p-5 transition-all hover:border-gold/30 hover:shadow-md`}
             >
-              <p.icon className="mb-4 h-5 w-5 text-gold" />
-              <p className="mb-1 font-serif text-2xl font-bold text-navy">{p.stat}</p>
+              <p.icon className="mb-4 h-5 w-5 text-gold transition-transform group-hover:scale-110" />
+              <p className="mb-0.5 font-serif text-2xl font-bold text-navy">{p.stat}</p>
               <p className="mb-3 font-sans text-xs text-muted-foreground">{p.statLabel}</p>
               <h3 className="mb-2 font-sans text-sm font-bold text-navy">{p.title}</h3>
               <p className="mt-auto font-sans text-xs leading-relaxed text-muted-foreground">
@@ -127,7 +134,7 @@ export function OpportunitySection() {
         </div>
 
         {/* Key economics callout */}
-        <div className="mt-12 rounded-sm border border-gold/20 bg-navy p-6 md:p-8">
+        <div className="reveal mt-12 rounded-sm border border-gold/20 bg-navy p-6 md:p-8">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="mb-1 font-sans text-xs font-semibold uppercase tracking-widest text-gold">
@@ -150,7 +157,7 @@ export function OpportunitySection() {
 
         {/* What to Avoid subsection */}
         <div className="mt-16">
-          <div className="mb-8">
+          <div className="reveal mb-8">
             <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-navy/60">
               What to Avoid
             </p>
@@ -160,10 +167,10 @@ export function OpportunitySection() {
           </div>
 
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            {avoidItems.map((item) => (
+            {avoidItems.map((item, i) => (
               <div
                 key={item.title}
-                className="flex gap-3 rounded-sm border border-border bg-card p-4"
+                className={`reveal reveal-delay-${(i % 3) + 1} flex gap-3 rounded-sm border border-border bg-card p-4 transition-all hover:border-destructive/20`}
               >
                 <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-destructive/60" />
                 <div>
@@ -177,8 +184,8 @@ export function OpportunitySection() {
           </div>
         </div>
 
-        {/* What this proposal does NOT cover */}
-        <div className="mt-12 rounded-sm border border-border bg-card p-6">
+        {/* Out of scope */}
+        <div className="reveal mt-12 rounded-sm border border-border bg-card p-6">
           <div className="mb-4 flex items-center gap-2">
             <Info className="h-4 w-4 shrink-0 text-muted-foreground" />
             <p className="font-sans text-xs font-bold uppercase tracking-widest text-navy/60">

@@ -70,19 +70,10 @@ export function Navigation() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
-            ? "bg-navy/95 backdrop-blur-md shadow-lg"
+            ? "bg-navy/96 backdrop-blur-md shadow-[0_1px_0_0_rgba(200,168,75,0.12)]"
             : "bg-transparent"
         )}
       >
-        {/* Progress bar */}
-        {scrolled && (
-          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-navy-mid/30">
-            <div
-              className="h-full bg-gold/60 transition-[width] duration-150 ease-out"
-              style={{ width: `${scrollProgress}%` }}
-            />
-          </div>
-        )}
 
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <a href="#overview" className="flex items-center gap-3">
@@ -167,12 +158,13 @@ export function Navigation() {
       <button
         onClick={scrollToTop}
         className={cn(
-          "fixed bottom-6 right-6 z-40 flex h-10 w-10 items-center justify-center rounded-sm bg-navy/90 text-gold shadow-lg backdrop-blur-sm transition-all hover:bg-navy",
+          "fixed bottom-6 right-6 z-40 flex items-center gap-1.5 rounded-sm border border-gold/20 bg-navy/95 px-3 py-2 font-sans text-[10px] font-semibold uppercase tracking-widest text-gold shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-gold/40 hover:bg-navy",
           showBackToTop ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"
         )}
         aria-label="Back to top"
       >
-        <ArrowUp className="h-4 w-4" />
+        <ArrowUp className="h-3 w-3" />
+        Top
       </button>
     </>
   )
