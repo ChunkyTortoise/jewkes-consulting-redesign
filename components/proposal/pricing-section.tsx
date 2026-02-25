@@ -327,7 +327,7 @@ export function PricingSection() {
           <p className="mb-4 font-sans text-xs font-bold uppercase tracking-widest text-gold">
             Where to Start &mdash; Match Your Biggest Problem
           </p>
-          <div className="grid gap-x-8 gap-y-2 md:grid-cols-2">
+          <div className="grid gap-x-8 md:grid-cols-2">
             {[
               { problem: "Losing leads after hours", solution: "Smith.ai + Clio Grow" },
               { problem: "Demand letters taking 5-15 hours", solution: "EvenUp" },
@@ -336,8 +336,14 @@ export function PricingSection() {
               { problem: "Medical record review taking weeks", solution: "Supio" },
               { problem: "Don't know what a case is worth at intake", solution: "CaseYak + Trellis" },
               { problem: "Use your defense background as a weapon", solution: "EvenUp + Trellis + Low Offer Response" },
-            ].map((row) => (
-              <div key={row.problem} className="flex items-start gap-2 py-1.5 border-b border-border/50 last:border-0">
+            ].map((row, i, arr) => (
+              <div
+                key={row.problem}
+                className={cn(
+                  "flex items-start gap-2 py-1.5",
+                  i < arr.length - 1 && "border-b border-border/50"
+                )}
+              >
                 <span className="font-sans text-xs text-muted-foreground">{row.problem}</span>
                 <span className="ml-auto shrink-0 font-sans text-xs font-bold text-navy">{row.solution}</span>
               </div>

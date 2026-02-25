@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { cn } from "@/lib/utils"
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import {
   Phone, Globe, Users, MessageSquare, FileText, Stethoscope, Calendar,
   Shield, Search, BarChart3, Car, UserSearch, Mic, Presentation, Brain,
@@ -391,6 +392,9 @@ export function ToolsSection() {
   const [expandedArea, setExpandedArea] = useState<string | null>("intake")
   const [expandedAlternatives, setExpandedAlternatives] = useState<Record<string, boolean>>({})
   const [expandedEthics, setExpandedEthics] = useState<Record<string, boolean>>({})
+  const headerRef   = useScrollReveal()
+  const calloutRef  = useScrollReveal()
+  const accordionRef = useScrollReveal()
 
   const toggleAlternatives = (areaId: string) =>
     setExpandedAlternatives(prev => ({ ...prev, [areaId]: !prev[areaId] }))
@@ -401,14 +405,14 @@ export function ToolsSection() {
   return (
     <section id="tools" className="bg-surface-alt px-6 py-24">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-4">
-          <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+        <div className="mb-4" ref={headerRef}>
+          <p className="reveal mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
             Section 3 &middot; The Full Stack
           </p>
-          <h2 className="mb-3 font-serif text-3xl font-bold text-navy md:text-4xl text-balance">
+          <h2 className="reveal reveal-delay-1 mb-3 font-serif text-3xl font-bold text-navy text-balance md:text-4xl">
             Tools by Problem Area
           </h2>
-          <p className="mb-5 max-w-3xl font-sans text-sm leading-relaxed text-muted-foreground">
+          <p className="reveal reveal-delay-2 mb-5 max-w-3xl font-sans text-sm leading-relaxed text-muted-foreground">
             Thirty-plus tools across eleven problem areas form the infrastructure this system runs on.
             Each solves a specific, expensive problem. No required order &mdash; pick what matches your
             biggest pain point first. Everything connects to Clio.
@@ -416,7 +420,7 @@ export function ToolsSection() {
         </div>
 
         {/* Recommendation callout */}
-        <div className="mb-12 rounded-sm border-l-4 border-gold bg-card p-5 shadow-sm">
+        <div className="reveal mb-12 rounded-sm border-l-4 border-gold bg-card p-5 shadow-sm" ref={calloutRef}>
           <p className="mb-1 font-sans text-xs font-bold uppercase tracking-widest text-gold">
             If you only do one thing after this conversation
           </p>
@@ -435,11 +439,12 @@ export function ToolsSection() {
         </div>
 
         {/* Problem areas */}
-        <div className="flex flex-col gap-2">
-          {problemAreas.map((area) => {
+        <div className="flex flex-col gap-2" ref={accordionRef}>
+          {problemAreas.map((area, areaIdx) => {
             const isExpanded = expandedArea === area.id
+            const delayClass = `reveal reveal-delay-${(areaIdx % 5) + 1}`
             return (
-              <div key={area.id} className="overflow-hidden rounded-sm border border-border bg-card">
+              <div key={area.id} className={`${delayClass} overflow-hidden rounded-sm border border-border bg-card`}>
                 <button
                   onClick={() => setExpandedArea(isExpanded ? null : area.id)}
                   className="flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-muted/50"

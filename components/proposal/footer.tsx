@@ -65,7 +65,7 @@ export function Footer() {
             <p className="font-sans text-[11px] text-primary-foreground/30">
               Confidential &mdash; Prepared exclusively for The Jewkes Firm, LLC &middot; Jordan Jewkes, Esq.
             </p>
-            <p className="font-sans text-[10px] text-primary-foreground/18">
+            <p className="font-sans text-[10px] text-primary-foreground/20">
               February 2026 &middot; State of Georgia
             </p>
           </div>

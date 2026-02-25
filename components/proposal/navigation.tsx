@@ -78,10 +78,10 @@ export function Navigation() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <a href="#overview" className="flex items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-gold">
-              <span className="font-serif text-sm font-bold text-navy">CR</span>
+              <span className="font-serif text-sm font-bold text-navy">OC</span>
             </div>
             <span className="font-serif text-sm font-bold tracking-wide text-gold-light">
-              Cayman Roden
+              OpenClaw
             </span>
           </a>
 
