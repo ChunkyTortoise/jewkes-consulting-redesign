@@ -2,6 +2,7 @@
 
 import { Clock, FileText, Shield, AlertTriangle, Stethoscope, XCircle, Info } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
+import { cn, revealDelay } from "@/lib/utils"
 
 const problems = [
   {
@@ -120,7 +121,7 @@ export function OpportunitySection() {
           {problems.map((p, i) => (
             <div
               key={p.title}
-              className={`reveal reveal-delay-${(i % 4) + 1} group flex flex-col rounded-sm border border-border bg-card p-5 transition-all hover:border-gold/30 hover:shadow-md`}
+              className={cn("reveal group flex flex-col rounded-sm border border-border bg-card p-5 transition-all hover:border-gold/30 hover:shadow-md", revealDelay(i, 4))}
             >
               <p.icon className="mb-4 h-5 w-5 text-gold transition-transform group-hover:scale-110" />
               <p className="mb-0.5 font-serif text-2xl font-bold text-navy">{p.stat}</p>
@@ -170,7 +171,7 @@ export function OpportunitySection() {
             {avoidItems.map((item, i) => (
               <div
                 key={item.title}
-                className={`reveal reveal-delay-${(i % 3) + 1} flex gap-3 rounded-sm border border-border bg-card p-4 transition-all hover:border-destructive/20`}
+                className={cn("reveal flex gap-3 rounded-sm border border-border bg-card p-4 transition-all hover:border-destructive/20", revealDelay(i, 3))}
               >
                 <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-destructive/60" />
                 <div>

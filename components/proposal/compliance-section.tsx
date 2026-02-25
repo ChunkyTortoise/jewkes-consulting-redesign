@@ -2,6 +2,7 @@
 
 import { Scale, Shield, FileCheck, Lock, Eye, AlertTriangle } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
+import { cn, revealDelay } from "@/lib/utils"
 
 const complianceItems = [
   {

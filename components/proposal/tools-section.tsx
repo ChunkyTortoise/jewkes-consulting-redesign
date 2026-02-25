@@ -442,9 +442,10 @@ export function ToolsSection() {
         <div className="flex flex-col gap-2" ref={accordionRef}>
           {problemAreas.map((area, areaIdx) => {
             const isExpanded = expandedArea === area.id
-            const delayClass = `reveal reveal-delay-${(areaIdx % 5) + 1}`
+            const delays = ["reveal-delay-1","reveal-delay-2","reveal-delay-3","reveal-delay-4","reveal-delay-5"]
+            const delayClass = delays[areaIdx % delays.length]
             return (
-              <div key={area.id} className={`${delayClass} overflow-hidden rounded-sm border border-border bg-card`}>
+              <div key={area.id} className={cn("reveal overflow-hidden rounded-sm border border-border bg-card", delayClass)}>
                 <button
                   onClick={() => setExpandedArea(isExpanded ? null : area.id)}
                   className="flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-muted/50"

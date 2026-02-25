@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { cn } from "@/lib/utils"
+import { cn, revealDelay } from "@/lib/utils"
 import { Check, Clock, ArrowDown } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
@@ -130,7 +130,8 @@ export function PricingSection() {
               <div
                 key={tier.id}
                 className={cn(
-                  `reveal reveal-delay-${i + 1} relative flex flex-col rounded-sm border p-6 transition-all`,
+                  "reveal relative flex flex-col rounded-sm border p-6 transition-all",
+                  revealDelay(i),
                   isCore
                     ? "border-gold bg-navy text-primary-foreground shadow-xl"
                     : isFullStack
@@ -247,7 +248,7 @@ export function PricingSection() {
             {timelineSteps.map((step, i) => (
               <div
                 key={step.week}
-                className={`reveal reveal-delay-${i + 1} flex gap-4`}
+                className={cn("reveal flex gap-4", revealDelay(i))}
               >
                 <div className="flex flex-col items-center">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border-2 border-gold bg-card shadow-sm">

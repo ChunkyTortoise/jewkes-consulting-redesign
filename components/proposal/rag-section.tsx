@@ -3,6 +3,7 @@
 import { Database, Search as SearchIcon, Swords } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { TypewriterText } from "@/components/proposal/typewriter-text"
+import { cn, revealDelay } from "@/lib/utils"
 
 const ragDatabases = [
   {
@@ -144,7 +145,7 @@ export function RAGSection() {
           {ragDatabases.map((db, i) => (
             <div
               key={db.name}
-              className={`reveal reveal-delay-${(i % 4) + 1} group flex flex-col rounded-sm border border-navy-mid bg-white/[0.03] p-5 transition-all hover:border-gold/25 hover:bg-white/[0.05]`}
+              className={cn("reveal group flex flex-col rounded-sm border border-navy-mid bg-white/[0.03] p-5 transition-all hover:border-gold/25 hover:bg-white/[0.05]", revealDelay(i, 4))}
             >
               <div className="mb-1 flex items-start justify-between gap-2">
                 <p className="font-sans text-sm font-bold text-primary-foreground">{db.name}</p>
@@ -198,7 +199,7 @@ export function RAGSection() {
           {counterIntelDatabases.map((db, i) => (
             <div
               key={db.name}
-              className={`reveal reveal-delay-${i + 1} flex flex-col rounded-sm border border-gold/20 bg-gold/[0.04] p-5 transition-all hover:border-gold/35 hover:bg-gold/[0.07]`}
+              className={cn("reveal flex flex-col rounded-sm border border-gold/20 bg-gold/[0.04] p-5 transition-all hover:border-gold/35 hover:bg-gold/[0.07]", revealDelay(i))}
             >
               <div className="mb-1 flex items-start justify-between gap-2">
                 <p className="font-sans text-sm font-bold text-primary-foreground">{db.name}</p>
