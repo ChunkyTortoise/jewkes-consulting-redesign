@@ -1,4 +1,4 @@
-import { Clock, FileText, Shield, AlertTriangle, Stethoscope, XCircle } from "lucide-react"
+import { Clock, FileText, Shield, AlertTriangle, Stethoscope, XCircle, Info } from "lucide-react"
 
 const problems = [
   {
@@ -61,6 +61,14 @@ const avoidItems = [
   },
 ]
 
+const outOfScope = [
+  "E-filing automation — Georgia county-specific filing systems vary significantly; evaluate after Clio is fully configured.",
+  "Virtual paralegal / staffing recommendations — can be addressed separately once you know what the automation covers.",
+  "Physical mail and service of process tracking — outside the scope of this engagement.",
+  "Firm website redesign — Intaker handles chat capture; site design is a separate engagement.",
+  "Billing and collections automation — Clio handles invoicing; collections strategy is outside this scope.",
+]
+
 export function OpportunitySection() {
   return (
     <section id="opportunity" className="bg-surface px-6 py-24">
@@ -73,17 +81,23 @@ export function OpportunitySection() {
           <h2 className="mb-5 font-serif text-3xl font-bold text-navy md:text-4xl text-balance">
             The defense side has been on this stack for two years.
           </h2>
-          <p className="mb-4 font-sans text-base leading-relaxed text-muted-foreground">
-            Six months from now, The Jewkes Firm looks like this: potential clients who call at 11pm get an
-            immediate response — qualified, documented, and scheduled — while you sleep. Demand letters
-            go out faster, backed by AI-organized medical records that would have taken two weeks to manually
-            review. Clients stop calling to ask {"\"what's the status?\""} because they already know, with your
-            firm{"'"}s branded app on their phone. You recover 15-20 hours per week.
-          </p>
+
+          {/* Six months vision as prominent blockquote */}
+          <div className="mb-6 rounded-sm border-l-4 border-gold bg-gold/[0.04] px-6 py-5">
+            <p className="font-serif text-base leading-relaxed text-navy md:text-lg">
+              <span className="font-bold">Six months from now,</span> The Jewkes Firm looks like this:
+              potential clients who call at 11pm get an immediate response &mdash; qualified, documented,
+              and scheduled &mdash; while you sleep. Demand letters go out faster, backed by AI-organized
+              medical records that would have taken two weeks to manually review. Clients stop calling to
+              ask {'"what\'s the status?"'} because they already know, with your firm{"'"}s branded app on their
+              phone. You recover 15-20 hours per week.
+            </p>
+          </div>
+
           <p className="font-sans text-sm leading-relaxed text-muted-foreground">
             AI-assisted record review, deposition analytics, and litigation intelligence tools have been
             standard infrastructure at well-run defense firms since 2022-2023. This isn{"'"}t about catching
-            up to other plaintiff firms. It{"'"}s about reaching parity with the defense side — then using your
+            up to other plaintiff firms. It{"'"}s about reaching parity with the defense side &mdash; then using your
             knowledge of how they think to flip those same tools into a plaintiff{"'"}s advantage.
           </p>
         </div>
@@ -121,7 +135,7 @@ export function OpportunitySection() {
               </p>
               <p className="font-sans text-sm leading-relaxed text-primary-foreground/80">
                 At average usage across all tools, expect approximately{" "}
-                <span className="font-bold text-gold">$1,350-2,500/mo</span> in subscriptions — roughly{" "}
+                <span className="font-bold text-gold">$1,350-2,500/mo</span> in subscriptions &mdash; roughly{" "}
                 <span className="font-bold text-primary-foreground">30-40%</span> of what a single full-time paralegal costs
                 in Peachtree City (~$4,500-5,500/mo), while covering intake, communication, record review,
                 research, drafting, trial prep, and case closing.
@@ -134,11 +148,11 @@ export function OpportunitySection() {
           </div>
         </div>
 
-        {/* What to Avoid section */}
+        {/* What to Avoid subsection */}
         <div className="mt-16">
           <div className="mb-8">
             <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-navy/60">
-              Section 2 &middot; What to Avoid
+              What to Avoid
             </p>
             <h3 className="mb-2 font-serif text-xl font-bold text-navy md:text-2xl">
               Before I recommend what to use, here{"'"}s what to stay away from.
@@ -154,7 +168,7 @@ export function OpportunitySection() {
                 <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-destructive/60" />
                 <div>
                   <p className="mb-1 font-sans text-xs font-bold text-navy">{item.title}</p>
-                  <p className="font-sans text-[11px] leading-relaxed text-muted-foreground">
+                  <p className="font-sans text-xs leading-relaxed text-muted-foreground">
                     {item.reason}
                   </p>
                 </div>
@@ -163,27 +177,25 @@ export function OpportunitySection() {
           </div>
         </div>
 
-        {/* Quick start router from proposal */}
+        {/* What this proposal does NOT cover */}
         <div className="mt-12 rounded-sm border border-border bg-card p-6">
-          <p className="mb-4 font-sans text-xs font-bold uppercase tracking-widest text-gold">
-            Where to Start
-          </p>
-          <div className="grid gap-x-8 gap-y-2 md:grid-cols-2">
-            {[
-              { problem: "Losing leads after hours", solution: "Smith.ai + Clio Grow" },
-              { problem: "Demand letters taking 5-15 hours", solution: "EvenUp" },
-              { problem: "Clients calling, bar complaint risk", solution: "Case Status" },
-              { problem: "Missed SOL / ante litem / deadlines", solution: "Deadline Automation" },
-              { problem: "Medical record review taking weeks", solution: "Supio" },
-              { problem: "Don't know what a case is worth at intake", solution: "CaseYak + Trellis" },
-              { problem: "Use your defense background as a weapon", solution: "EvenUp + Trellis + Low Offer Response" },
-            ].map((row) => (
-              <div key={row.problem} className="flex items-start gap-2 py-1.5 border-b border-border/50 last:border-0">
-                <span className="font-sans text-xs text-muted-foreground">{row.problem}</span>
-                <span className="ml-auto shrink-0 font-sans text-xs font-bold text-navy">{row.solution}</span>
-              </div>
-            ))}
+          <div className="mb-4 flex items-center gap-2">
+            <Info className="h-4 w-4 shrink-0 text-muted-foreground" />
+            <p className="font-sans text-xs font-bold uppercase tracking-widest text-navy/60">
+              What This Proposal Does Not Cover
+            </p>
           </div>
+          <p className="mb-3 font-sans text-xs text-muted-foreground">
+            These are known items outside the current scope &mdash; each can be addressed in future phases:
+          </p>
+          <ul className="flex flex-col gap-1.5">
+            {outOfScope.map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground/30" />
+                <span className="font-sans text-xs leading-relaxed text-muted-foreground">{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

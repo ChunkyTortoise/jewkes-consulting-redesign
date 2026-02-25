@@ -6,6 +6,12 @@ import './globals.css'
 const _lato = Lato({ subsets: ["latin"], weight: ["300", "400", "700", "900"] });
 const _merriweather = Merriweather({ subsets: ["latin"], weight: ["300", "400", "700", "900"] });
 
+export const viewport: Viewport = {
+  themeColor: '#0a1628',
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export const metadata: Metadata = {
   title: 'AI Integration Strategy | The Jewkes Firm',
   description: 'AI Integration Strategy prepared by OpenClaw Consulting for The Jewkes Firm, LLC — Plaintiff Personal Injury & Medical Malpractice. 42 AI use cases, 11 integrated tools, 10 knowledge databases.',

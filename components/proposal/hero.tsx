@@ -3,46 +3,57 @@ import { ArrowDown } from "lucide-react"
 export function Hero() {
   return (
     <section id="overview" className="relative flex min-h-screen flex-col items-center justify-center bg-navy px-6 text-center">
-      {/* Subtle geometric accent */}
+      {/* Geometric accent pattern */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -right-40 top-1/4 h-96 w-96 rounded-full border border-gold/5" />
-        <div className="absolute -left-20 bottom-1/3 h-64 w-64 rounded-full border border-gold/5" />
-        <div className="absolute right-1/4 top-16 h-px w-32 bg-gold/10" />
-        <div className="absolute left-1/3 bottom-24 h-px w-24 bg-gold/10" />
-        {/* Vertical accent lines */}
-        <div className="absolute left-[15%] top-[20%] h-32 w-px bg-gold/[0.04]" />
-        <div className="absolute right-[20%] bottom-[25%] h-24 w-px bg-gold/[0.04]" />
+        <div className="absolute -right-32 top-1/4 h-80 w-80 rounded-full border border-gold/10" />
+        <div className="absolute -right-20 top-[30%] h-56 w-56 rounded-full border border-gold/[0.06]" />
+        <div className="absolute -left-16 bottom-1/3 h-64 w-64 rounded-full border border-gold/10" />
+        <div className="absolute right-1/4 top-20 h-px w-40 bg-gold/15" />
+        <div className="absolute left-1/4 bottom-32 h-px w-32 bg-gold/15" />
+        {/* Grid lines */}
+        <div className="absolute left-[12%] top-[15%] h-40 w-px bg-gold/[0.07]" />
+        <div className="absolute right-[15%] bottom-[20%] h-32 w-px bg-gold/[0.07]" />
+        <div className="absolute left-[50%] top-[8%] h-20 w-px bg-gold/[0.05]" />
+        {/* Corner accents */}
+        <div className="absolute left-8 top-24 h-16 w-16 border-l border-t border-gold/[0.08]" />
+        <div className="absolute bottom-24 right-8 h-16 w-16 border-b border-r border-gold/[0.08]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-3xl">
-        <p className="mb-6 font-sans text-xs font-medium uppercase tracking-[0.3em] text-gold">
+        {/* Firm name as subtitle */}
+        <p className="mb-3 font-sans text-xs font-medium uppercase tracking-[0.3em] text-gold">
           AI Integration Strategy
         </p>
 
-        <h1 className="mb-4 font-serif text-4xl font-bold leading-tight text-primary-foreground md:text-5xl lg:text-6xl text-balance">
-          The Jewkes Firm, LLC
+        <p className="mb-6 font-sans text-sm text-gold-light/60">
+          Prepared for The Jewkes Firm, LLC &middot; Tyrone &middot; Griffin &middot; LaGrange, Georgia
+        </p>
+
+        {/* Value proposition as H1 */}
+        <h1 className="mb-6 font-serif text-3xl font-bold leading-tight text-primary-foreground md:text-4xl lg:text-5xl text-balance">
+          The plaintiff version of the defense stack, priced for a solo firm.
         </h1>
 
         <p className="mb-2 font-serif text-lg font-light text-gold md:text-xl">
           Plaintiff Personal Injury & Medical Malpractice
         </p>
 
-        <p className="mb-10 font-sans text-sm text-gold-light/60">
-          Tyrone &middot; Griffin &middot; LaGrange, Georgia
-        </p>
+        <div className="mx-auto mb-10 h-px w-20 bg-gold/40" />
 
-        <div className="mx-auto mb-12 h-px w-20 bg-gold/40" />
+        {/* Vision statement as a distinct blockquote callout */}
+        <div className="mx-auto mb-8 max-w-2xl rounded-sm border-l-2 border-gold/40 bg-gold/[0.04] px-6 py-5">
+          <p className="font-serif text-base italic leading-relaxed text-primary-foreground/80 md:text-lg">
+            You spent years on the defense side. You know what that stack looks like &mdash;
+            organized discovery, indexed expert testimony, demand letters that get picked
+            apart before they{"'"}re answered. This is the plaintiff version of that
+            infrastructure, available right now.
+          </p>
+        </div>
 
-        {/* Positioning line from Strategy Overview */}
-        <p className="mx-auto mb-4 max-w-2xl font-serif text-base italic leading-relaxed text-primary-foreground/70 md:text-lg">
-          You spent years on the defense side. You know what that stack looks like.
-          This is the plaintiff version of that infrastructure, priced for a solo firm, available right now.
-        </p>
-
-        <p className="mx-auto mb-10 max-w-xl font-sans text-sm leading-relaxed text-muted-foreground">
-          A full AI and automation menu — intake, communication, record review, research,
+        <p className="mx-auto mb-10 max-w-xl font-sans text-sm leading-relaxed text-primary-foreground/50">
+          A full AI and automation menu &mdash; intake, communication, record review, research,
           drafting, trial prep, and case closing. Every item is standalone. Pick what matches
-          your biggest pain points.
+          your biggest pain points. No locked packages, no required order.
         </p>
 
         {/* Key metrics strip */}
@@ -53,7 +64,7 @@ export function Hero() {
           </div>
           <div className="h-8 w-px bg-gold/20" />
           <div className="text-center">
-            <p className="font-serif text-2xl font-bold text-gold">11</p>
+            <p className="font-serif text-2xl font-bold text-gold">30+</p>
             <p className="font-sans text-[10px] uppercase tracking-wider text-primary-foreground/40">integrated tools</p>
           </div>
           <div className="h-8 w-px bg-gold/20" />

@@ -111,7 +111,7 @@ export function DeliverablesSection() {
     <section id="deliverables" className="bg-surface px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          Section 4 &middot; Configuration & Setup
+          Section 4 &middot; Configuration &amp; Setup
         </p>
         <h2 className="mb-5 font-serif text-3xl font-bold text-navy md:text-4xl text-balance">
           What I Can Build For You

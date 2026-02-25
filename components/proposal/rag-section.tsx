@@ -50,8 +50,20 @@ const ragDatabases = [
   {
     name: "Dental Malpractice Standards",
     cost: "~$10-15/mo",
-    description: "ADA clinical guidelines, dental board disciplinary records, and dental expert databases — indexed for dental mal case types specific to your practice.",
+    description: "ADA clinical guidelines, dental board disciplinary records, and dental expert databases -- indexed for dental mal case types specific to your practice.",
     query: "Map the standard-of-care deviations in this patient's dental records against ADA guidelines.",
+  },
+  {
+    name: "Per-Case Document Querying",
+    cost: "$0 (NotebookLM)",
+    description: "Upload up to 50 non-PHI case documents per notebook (police reports, court filings, contracts, correspondence) and query in plain English with cited source answers. HIPAA caveat: do not upload identifiable medical records.",
+    query: "What did the responding officer note about road conditions in the crash report?",
+  },
+  {
+    name: "Georgia Pattern Jury Instructions",
+    cost: "$0 (NotebookLM)",
+    description: "Georgia PJIs indexed in NotebookLM -- query the right instruction instead of navigating the full index. Set up during onboarding.",
+    query: "What is the Georgia charge for sudden emergency doctrine?",
   },
 ]
 
@@ -77,7 +89,7 @@ export function RAGSection() {
         {/* Section header */}
         <div className="mb-4">
           <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-            Practice Knowledge Databases
+            Knowledge Bases &middot; Practice Knowledge Databases
           </p>
           <h2 className="mb-5 font-serif text-2xl font-bold text-primary-foreground md:text-3xl text-balance">
             Gets smarter with every transcript, matter, and article you add.
