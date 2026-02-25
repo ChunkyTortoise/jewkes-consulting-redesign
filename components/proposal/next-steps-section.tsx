@@ -31,6 +31,16 @@ const steps = [
     title: "30-day check-in, then add more",
     description: "We review what's working -- lead capture rates, client communication volume, time saved -- and adjust. Once the first items are producing results, we layer in whatever's next.",
   },
+  {
+    number: "07",
+    title: "90-day case study",
+    description: "After 90 days, I'll share anonymized results from our work together — with your permission — as a case study for other plaintiff attorneys considering this path.",
+  },
+  {
+    number: "08",
+    title: "Referral courtesy",
+    description: "If you know other attorneys who could benefit from this kind of setup, I'm happy to offer a referral courtesy.",
+  },
 ]
 
 export function NextStepsSection() {
@@ -70,11 +80,11 @@ export function NextStepsSection() {
             problem first.
           </p>
           <a
-            href="mailto:caymanroden@gmail.com"
+            href="mailto:cayman@openclaw.consulting"
             className="inline-flex items-center gap-2 rounded-sm bg-gold px-8 py-3.5 font-sans text-sm font-semibold text-navy transition-all hover:bg-gold-light"
           >
             <Mail className="h-4 w-4" />
-            caymanroden@gmail.com
+            cayman@openclaw.consulting
             <ArrowRight className="h-4 w-4" />
           </a>
           <p className="mt-4 font-sans text-xs text-primary-foreground/30">

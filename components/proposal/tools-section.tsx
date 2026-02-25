@@ -7,7 +7,7 @@ import {
   Shield, Search, BarChart3, Car, UserSearch, Mic, Presentation, Brain,
   BookOpen, Briefcase, Star, Megaphone, Monitor, Volume2, PhoneCall,
   Receipt, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Award,
-  Banknote, Newspaper, Mail, Scale
+  Banknote, Newspaper, Mail, Scale, MapPin, Info, ChevronRight
 } from "lucide-react"
 
 type Tool = {
@@ -16,17 +16,30 @@ type Tool = {
   cost: string
   icon: React.ComponentType<{ className?: string }>
   tag?: string
+  venueNote?: string
+  workflowNote?: string
+  ethicsNote?: string
 }
 
-type ProblemArea = {
+type Alternative = {
+  option: string
+  model: string
+  cost: string
+  bestFor: string
+  recommended?: boolean
+}
+
+type ProblemAreaExtended = {
   id: string
   number: string
   title: string
   problem: string
   tools: Tool[]
+  alternatives?: Alternative[]
+  alternativesNote?: string
 }
 
-const problemAreas: ProblemArea[] = [
+const problemAreas: ProblemAreaExtended[] = [
   {
     id: "intake",
     number: "01",
@@ -39,6 +52,7 @@ const problemAreas: ProblemArea[] = [
         cost: "~$370/mo",
         icon: Phone,
         tag: "Start Here",
+        ethicsNote: "Ethics: Smith.ai calls must be disclosed as intake assistance, not legal advice. Live receptionist component is bound by your firm's confidentiality requirements. Clio Grow uses a signed BAA for HIPAA compliance.",
       },
       {
         name: "Intaker",
@@ -53,6 +67,13 @@ const problemAreas: ProblemArea[] = [
         icon: Users,
       },
     ],
+    alternatives: [
+      { option: "Smith.ai", model: "AI + human hybrid", cost: "~$285/mo", bestFor: "Complex PI/med mal; calls needing human judgment", recommended: true },
+      { option: "Ruby Receptionists", model: "Human-only", cost: "~$235–360/mo", bestFor: "Brand-focused; less automation" },
+      { option: "Answer1", model: "Human-only", cost: "~$160–285/mo", bestFor: "Lower volume; fewer integrations" },
+      { option: "Clio Grow alone", model: "Web forms only", cost: "Included in Clio", bestFor: "No live call coverage" },
+    ],
+    alternativesNote: "For a practice spanning auto wrecks, med mal, and dental mal, the hybrid model matters — calls that immediately surface SOL questions or standard-of-care facts benefit from human judgment, not just a script.",
   },
   {
     id: "communication",
@@ -66,6 +87,8 @@ const problemAreas: ProblemArea[] = [
         cost: "~$99-149/mo",
         icon: MessageSquare,
         tag: "Priority",
+        workflowNote: "Key workflow: Automated weekly treatment check-ins — 'How was your pain level this week? Have you attended all PT appointments?' Client replies are timestamped and documented in the case file as contemporaneous damages evidence that strengthens every demand.",
+        ethicsNote: "Ethics: Settlement negotiations, case strategy updates, and bad news conversations must come from you directly. The automation is configured to never trigger on settlement-stage cases.",
       },
       {
         name: "AI Ethics Policy",
@@ -89,10 +112,12 @@ const problemAreas: ProblemArea[] = [
     tools: [
       {
         name: "EvenUp",
-        description: "AI platform built for plaintiff PI. Upload medical records, get a structured demand letter trained on 250,000+ verdicts and settlements. Firms report 20-30% higher settlements. Georgia venue caveat: valuations are most accurate in data-dense jurisdictions like Fulton/DeKalb. For Fayette, Spalding, and Troup counties, treat valuations as directional.",
+        description: "AI platform built for plaintiff PI. Upload medical records, get a structured demand letter trained on 250,000+ verdicts and settlements. Firms report 20-30% higher settlements.",
         cost: "$300-800/demand",
         icon: FileText,
         tag: "High ROI",
+        venueNote: "Georgia venue note: EvenUp's settlement valuations are most accurate in data-dense jurisdictions like Fulton and DeKalb counties. For cases in Fayette, Coweta, Spalding, and Troup counties — where the bulk of your client base falls — the dataset is sparser and valuations should be treated as directional, not definitive. Human judgment on rural Georgia case values still matters.",
+        ethicsNote: "Ethics: Attorney review of every demand before it goes out is non-negotiable. EvenUp produces a draft, not a final work product. Some adjusters have started flagging AI-generated demands — human review and customization mitigates that risk.",
       },
       {
         name: "Supio",
@@ -364,6 +389,14 @@ const problemAreas: ProblemArea[] = [
 
 export function ToolsSection() {
   const [expandedArea, setExpandedArea] = useState<string | null>("intake")
+  const [expandedAlternatives, setExpandedAlternatives] = useState<Record<string, boolean>>({})
+  const [expandedEthics, setExpandedEthics] = useState<Record<string, boolean>>({})
+
+  const toggleAlternatives = (areaId: string) =>
+    setExpandedAlternatives(prev => ({ ...prev, [areaId]: !prev[areaId] }))
+
+  const toggleEthics = (toolName: string) =>
+    setExpandedEthics(prev => ({ ...prev, [toolName]: !prev[toolName] }))
 
   return (
     <section id="tools" className="bg-surface-alt px-6 py-24">
@@ -433,7 +466,7 @@ export function ToolsSection() {
                         <div
                           key={tool.name}
                           className={cn(
-                            "rounded-sm border p-4 transition-all",
+                            "flex flex-col rounded-sm border p-4 transition-all",
                             tool.tag
                               ? "border-gold/30 bg-card shadow-sm"
                               : "border-border bg-card"
@@ -453,12 +486,112 @@ export function ToolsSection() {
                           <p className="mb-3 font-sans text-xs leading-relaxed text-muted-foreground">
                             {tool.description}
                           </p>
-                          <p className="font-sans text-xs font-bold text-navy">
-                            {tool.cost}
-                          </p>
+
+                          {/* Venue note */}
+                          {tool.venueNote && (
+                            <div className="mb-3 flex gap-2 rounded-sm border-l-2 border-gold/40 bg-gold/5 px-3 py-2.5">
+                              <MapPin className="mt-0.5 h-3 w-3 shrink-0 text-gold/60" />
+                              <p className="font-sans text-[11px] leading-relaxed text-muted-foreground">
+                                {tool.venueNote}
+                              </p>
+                            </div>
+                          )}
+
+                          {/* Workflow note */}
+                          {tool.workflowNote && (
+                            <div className="mb-3 rounded-sm border-l-2 border-navy/30 bg-navy/5 px-3 py-2.5">
+                              <p className="mb-0.5 font-sans text-[10px] font-bold uppercase tracking-wider text-navy/50">Key workflow</p>
+                              <p className="font-sans text-[11px] leading-relaxed text-muted-foreground">
+                                {tool.workflowNote.replace("Key workflow: ", "")}
+                              </p>
+                            </div>
+                          )}
+
+                          <div className="mt-auto flex items-center justify-between gap-2 pt-1">
+                            <p className="font-sans text-xs font-bold text-navy">
+                              {tool.cost}
+                            </p>
+                            {/* Ethics toggle */}
+                            {tool.ethicsNote && (
+                              <button
+                                onClick={() => toggleEthics(tool.name)}
+                                className="flex items-center gap-1 rounded-sm px-2 py-1 font-sans text-[10px] font-medium italic text-muted-foreground/60 transition-colors hover:bg-muted hover:text-muted-foreground"
+                              >
+                                <Info className="h-3 w-3" />
+                                Ethics {"&"} Risk
+                                <ChevronRight className={cn("h-3 w-3 transition-transform", expandedEthics[tool.name] && "rotate-90")} />
+                              </button>
+                            )}
+                          </div>
+
+                          {/* Ethics note collapsible */}
+                          {tool.ethicsNote && expandedEthics[tool.name] && (
+                            <p className="mt-2 font-sans text-[11px] italic leading-relaxed text-muted-foreground/60 border-t border-border pt-2">
+                              {tool.ethicsNote}
+                            </p>
+                          )}
                         </div>
                       ))}
                     </div>
+
+                    {/* Alternatives table */}
+                    {area.alternatives && (
+                      <div className="mt-4">
+                        <button
+                          onClick={() => toggleAlternatives(area.id)}
+                          className="flex items-center gap-1.5 font-sans text-xs font-medium text-muted-foreground transition-colors hover:text-navy"
+                        >
+                          <ChevronRight className={cn("h-3.5 w-3.5 transition-transform", expandedAlternatives[area.id] && "rotate-90")} />
+                          Compare alternatives
+                        </button>
+                        {expandedAlternatives[area.id] && (
+                          <div className="mt-3 rounded-sm border border-border bg-card overflow-hidden">
+                            <div className="overflow-x-auto">
+                              <table className="w-full text-left">
+                                <thead>
+                                  <tr className="border-b border-border bg-muted/40">
+                                    <th className="px-3 py-2 font-sans text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Option</th>
+                                    <th className="px-3 py-2 font-sans text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Model</th>
+                                    <th className="px-3 py-2 font-sans text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Cost</th>
+                                    <th className="px-3 py-2 font-sans text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Best For</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {area.alternatives.map((alt, i) => (
+                                    <tr
+                                      key={alt.option}
+                                      className={cn(
+                                        "border-b border-border last:border-0",
+                                        alt.recommended && "bg-gold/5"
+                                      )}
+                                    >
+                                      <td className="px-3 py-2.5">
+                                        <div className="flex items-center gap-1.5">
+                                          <span className="font-sans text-xs font-bold text-navy">{alt.option}</span>
+                                          {alt.recommended && (
+                                            <span className="rounded-sm bg-gold/15 px-1.5 py-0.5 font-sans text-[9px] font-bold uppercase tracking-wider text-gold">Rec.</span>
+                                          )}
+                                        </div>
+                                      </td>
+                                      <td className="px-3 py-2.5 font-sans text-xs text-muted-foreground">{alt.model}</td>
+                                      <td className="px-3 py-2.5 font-sans text-xs font-medium text-navy">{alt.cost}</td>
+                                      <td className="px-3 py-2.5 font-sans text-xs text-muted-foreground">{alt.bestFor}</td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                            {area.alternativesNote && (
+                              <div className="border-t border-border bg-muted/20 px-3 py-2.5">
+                                <p className="font-sans text-[11px] italic leading-relaxed text-muted-foreground/70">
+                                  {area.alternativesNote}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

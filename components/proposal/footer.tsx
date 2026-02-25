@@ -17,10 +17,10 @@ export function Footer() {
 
           <div className="flex flex-col items-center gap-2 md:items-end">
             <a
-              href="mailto:caymanroden@gmail.com"
+              href="mailto:cayman@openclaw.consulting"
               className="font-sans text-xs text-gold/60 transition-colors hover:text-gold"
             >
-              caymanroden@gmail.com
+              cayman@openclaw.consulting
             </a>
           </div>
         </div>

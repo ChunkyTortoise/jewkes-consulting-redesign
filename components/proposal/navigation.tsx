@@ -114,10 +114,10 @@ export function Navigation() {
 
           <div className="flex items-center gap-4">
             <a
-              href="mailto:caymanroden@gmail.com"
+              href="mailto:cayman@openclaw.consulting"
               className="hidden text-xs font-sans font-medium text-gold/80 transition-colors hover:text-gold lg:block"
             >
-              caymanroden@gmail.com
+              cayman@openclaw.consulting
             </a>
 
             {/* Mobile menu toggle */}
@@ -153,11 +153,11 @@ export function Navigation() {
             ))}
             <div className="mt-6 h-px w-full max-w-xs bg-navy-mid" />
             <a
-              href="mailto:caymanroden@gmail.com"
+              href="mailto:cayman@openclaw.consulting"
               onClick={() => setMobileOpen(false)}
               className="mt-2 font-sans text-xs font-medium text-gold/60 transition-colors hover:text-gold"
             >
-              caymanroden@gmail.com
+              cayman@openclaw.consulting
             </a>
           </div>
         </div>
