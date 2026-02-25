@@ -50,22 +50,19 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [handleScroll])
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll and close on resize when mobile menu is open
   useEffect(() => {
     if (!mobileOpen) return
     const prior = document.body.style.overflow
     document.body.style.overflow = "hidden"
-    return () => { document.body.style.overflow = prior }
-  }, [mobileOpen])
-
-  // Close mobile menu on viewport resize to desktop
-  useEffect(() => {
-    if (!mobileOpen) return
     const handleResize = () => {
       if (window.innerWidth >= 1024) setMobileOpen(false)
     }
     window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
+    return () => {
+      document.body.style.overflow = prior
+      window.removeEventListener("resize", handleResize)
+    }
   }, [mobileOpen])
 
   const scrollToTop = () => {
@@ -143,36 +140,40 @@ export function Navigation() {
         </div>
       </nav>
 
-      {/* Mobile menu overlay */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-40 bg-navy/98 backdrop-blur-md lg:hidden">
-          <div className="flex h-full flex-col items-center justify-center gap-2 px-8">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className={cn(
-                  "w-full max-w-xs rounded-sm px-5 py-3 text-center font-sans text-sm font-medium uppercase tracking-wider transition-colors",
-                  activeSection === item.href.replace("#", "")
-                    ? "bg-gold/10 text-gold"
-                    : "text-gold-light/70 hover:bg-gold/5 hover:text-gold-light"
-                )}
-              >
-                {item.label}
-              </a>
-            ))}
-            <div className="mt-6 h-px w-full max-w-xs bg-navy-mid" />
+      {/* Mobile menu overlay — always rendered, fades in/out to allow CSS transition */}
+      <div
+        aria-hidden={!mobileOpen}
+        className={cn(
+          "fixed inset-0 z-40 bg-navy/98 backdrop-blur-md lg:hidden transition-opacity duration-200",
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+      >
+        <div className="flex h-full flex-col items-center justify-center gap-2 px-8">
+          {navItems.map((item) => (
             <a
-              href="mailto:caymanroden@gmail.com"
+              key={item.href}
+              href={item.href}
               onClick={() => setMobileOpen(false)}
-              className="mt-2 font-sans text-xs font-medium text-gold/60 transition-colors hover:text-gold"
+              className={cn(
+                "w-full max-w-xs rounded-sm px-5 py-3 text-center font-sans text-sm font-medium uppercase tracking-wider transition-colors",
+                activeSection === item.href.replace("#", "")
+                  ? "bg-gold/10 text-gold"
+                  : "text-gold-light/70 hover:bg-gold/5 hover:text-gold-light"
+              )}
             >
-              caymanroden@gmail.com
+              {item.label}
             </a>
-          </div>
+          ))}
+          <div className="mt-6 h-px w-full max-w-xs bg-navy-mid" />
+          <a
+            href="mailto:caymanroden@gmail.com"
+            onClick={() => setMobileOpen(false)}
+            className="mt-2 font-sans text-xs font-medium text-gold/60 transition-colors hover:text-gold"
+          >
+            caymanroden@gmail.com
+          </a>
         </div>
-      )}
+      </div>
 
       {/* Back to top button */}
       <button

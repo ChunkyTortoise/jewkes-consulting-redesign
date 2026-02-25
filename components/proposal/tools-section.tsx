@@ -14,7 +14,7 @@ type Tool = {
   name: string
   description: string
   cost: string
-  icon: React.ComponentType<{ className?: string }>
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>
   tag?: string
 }
 
