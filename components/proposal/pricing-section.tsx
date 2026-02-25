@@ -70,9 +70,9 @@ const costTable = [
   { tool: "Supio", cost: "$500-1,000/mo", note: "Volume-based" },
   { tool: "CoCounsel", cost: "$65/mo", note: "Fastcase free via GA Bar" },
   { tool: "Trellis", cost: "~$79-149/mo", note: "Georgia litigation analytics" },
-  { tool: "Briefpoint", cost: "~$99/mo", note: "Discovery drafting (solo plan)" },
+  { tool: "Briefpoint", cost: "~$50-100/mo", note: "Discovery drafting (solo plan)" },
   { tool: "Tracers", cost: "~$39-150/mo", note: "Skip tracing + insurance discovery" },
-  { tool: "Skribe", cost: "~$349/hr", note: "Per-deposition; no subscription" },
+  { tool: "Skribe", cost: "~$349/hr live; ~$50-200/depo", note: "Per-deposition; no subscription" },
   { tool: "TrialPad", cost: "~$130 one-time", note: "iPad courtroom presentation" },
   { tool: "Microsoft Copilot", cost: "~$30/mo", note: "Email + Word AI (requires M365)" },
   { tool: "OpenClaw", cost: "~$50/mo", note: "AI legal assistant (requires configuration)" },
@@ -103,7 +103,7 @@ export function PricingSection() {
     <section id="pricing" className="bg-surface px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          How to Start
+          Section 5 &middot; Engagement & Pricing
         </p>
         <h2 className="mb-5 font-serif text-3xl font-bold text-navy md:text-4xl text-balance">
           Three engagement tiers. Pick what fits.
@@ -274,6 +274,48 @@ export function PricingSection() {
               </button>
             </div>
           )}
+        </div>
+
+        {/* Where to Start - Quick-Start Router (relocated from Opportunity) */}
+        <div className="mt-12 rounded-sm border border-gold/20 bg-card p-6">
+          <p className="mb-4 font-sans text-xs font-bold uppercase tracking-widest text-gold">
+            Where to Start &mdash; Match Your Biggest Problem
+          </p>
+          <div className="grid gap-x-8 gap-y-2 md:grid-cols-2">
+            {[
+              { problem: "Losing leads after hours", solution: "Smith.ai + Clio Grow" },
+              { problem: "Demand letters taking 5-15 hours", solution: "EvenUp" },
+              { problem: "Clients calling, bar complaint risk", solution: "Case Status" },
+              { problem: "Missed SOL / ante litem / deadlines", solution: "Deadline Automation" },
+              { problem: "Medical record review taking weeks", solution: "Supio" },
+              { problem: "Don't know what a case is worth at intake", solution: "CaseYak + Trellis" },
+              { problem: "Use your defense background as a weapon", solution: "EvenUp + Trellis + Low Offer Response" },
+            ].map((row) => (
+              <div key={row.problem} className="flex items-start gap-2 py-1.5 border-b border-border/50 last:border-0">
+                <span className="font-sans text-xs text-muted-foreground">{row.problem}</span>
+                <span className="ml-auto shrink-0 font-sans text-xs font-bold text-navy">{row.solution}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* About OpenClaw Consulting */}
+        <div className="mt-6 rounded-sm border border-border bg-card p-5">
+          <p className="mb-3 font-sans text-xs font-bold uppercase tracking-widest text-gold">
+            About OpenClaw Consulting
+          </p>
+          <p className="mb-2 font-sans text-sm leading-relaxed text-foreground">
+            OpenClaw Consulting specializes in AI implementation for legal practices &mdash;
+            configuration, compliance, and workflow automation. Every tool in this proposal is
+            selected because it solves a specific problem for a solo plaintiff PI/med mal practice,
+            not because of a vendor relationship.
+          </p>
+          <p className="font-sans text-xs leading-relaxed text-muted-foreground">
+            These are AI systems built specifically for your practice, using your cases, your experts,
+            your venues, and your arguments as the training material. They don{"'"}t exist before they{"'"}re
+            built, and they compound in value over time. That{"'"}s the reason to hire a consultant
+            rather than just reading the Clio sales page.
+          </p>
         </div>
 
         {/* Fee note */}

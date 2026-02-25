@@ -6,7 +6,8 @@ import {
   Phone, Globe, Users, MessageSquare, FileText, Stethoscope, Calendar,
   Shield, Search, BarChart3, Car, UserSearch, Mic, Presentation, Brain,
   BookOpen, Briefcase, Star, Megaphone, Monitor, Volume2, PhoneCall,
-  Receipt, TrendingUp, AlertTriangle, ChevronDown, ChevronUp
+  Receipt, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Award,
+  Banknote, Newspaper, Mail, Scale
 } from "lucide-react"
 
 type Tool = {
@@ -34,7 +35,7 @@ const problemAreas: ProblemArea[] = [
     tools: [
       {
         name: "Smith.ai + Clio Grow",
-        description: "AI + human hybrid receptionist. 24/7 intake coverage. AI handles the initial greeting and intake questions; live receptionist takes over for complex or sensitive conversations. 15-25% more retained cases. Clio Grow manages leads, automates follow-up, and feeds structured intake data into your case management. The hybrid model matters for med mal and dental mal where SOL and standard-of-care questions surface immediately.",
+        description: "AI + human hybrid receptionist. 24/7 intake coverage. AI handles the initial greeting and intake questions; live receptionist takes over for complex or sensitive conversations. 15-25% more retained cases. The hybrid model matters for med mal and dental mal where SOL and standard-of-care questions surface immediately.",
         cost: "~$370/mo",
         icon: Phone,
         tag: "Start Here",
@@ -47,7 +48,7 @@ const problemAreas: ProblemArea[] = [
       },
       {
         name: "Referral Network Management",
-        description: "Systematic tracking of referral sources with automated thank-you workflows, case outcome updates, and referral source ROI tracking in Clio Grow.",
+        description: "Systematic tracking of referral sources (chiropractors, ER physicians, body shops, attorneys) with automated thank-you workflows, case outcome updates, and referral source ROI tracking in Clio Grow.",
         cost: "$0 incremental",
         icon: Users,
       },
@@ -61,14 +62,20 @@ const problemAreas: ProblemArea[] = [
     tools: [
       {
         name: "Case Status",
-        description: "Branded client app with automated milestone updates, 138-language AI translation, NPS tracking, and weekly treatment check-ins. The check-in workflow sends automated texts — client replies like 'pain is still 7/10, had to miss PT Tuesday' become timestamped, contemporaneous damages evidence that strengthens your demand.",
+        description: "Branded client app with automated milestone updates, 138-language AI translation, NPS tracking, and weekly treatment check-ins. Client replies like 'pain is still 7/10, had to miss PT Tuesday' become timestamped, contemporaneous damages evidence.",
         cost: "~$99-149/mo",
         icon: MessageSquare,
         tag: "Priority",
       },
       {
         name: "AI Ethics Policy",
-        description: "Written AI use policy for your firm, plus updated engagement letter language disclosing AI tool use to clients. ABA Opinion 512 compliant.",
+        description: "Written AI use policy for your firm, plus updated engagement letter language disclosing AI tool use to clients. ABA Opinion 512 compliant. Covers Rule 1.6(c), Rule 5.3, Rule 1.1.",
+        cost: "$0 (one-time)",
+        icon: Shield,
+      },
+      {
+        name: "Firm Technology Security Setup",
+        description: "MFA across every firm account, encrypted email configuration, written information security plan (Georgia Rule 1.1), password manager setup. Configuration work, not a subscription.",
         cost: "$0 (one-time)",
         icon: Shield,
       },
@@ -89,20 +96,20 @@ const problemAreas: ProblemArea[] = [
       },
       {
         name: "Supio",
-        description: "AI medical record review. 500 pages in hours, not weeks. Identifies deviations from standard of care, gaps in care, and contradictions across multiple providers. 97%+ verified accuracy with source linking. One firm saved 437 hours across six cases. Built for med mal and dental mal complexity.",
+        description: "AI medical record review. 500 pages in hours, not weeks. Identifies deviations from standard of care, gaps in care, and contradictions across multiple providers. 97%+ verified accuracy with source linking. Built for med mal and dental mal complexity.",
         cost: "$500-1,000/mo",
         icon: Stethoscope,
       },
       {
         name: "DigitalOwl",
-        description: "Raw medical records to organized chronology with timeline, provider summary, and treatment gaps flagged. Particularly valuable for med mal.",
+        description: "Raw medical records to organized chronology with timeline, provider summary, and treatment gaps flagged. Complements Supio on complex med mal files with voluminous handwritten records.",
         cost: "~$100-300/case",
         icon: BookOpen,
       },
       {
-        name: "OrbDoc (Bill Auditing)",
-        description: "Compares bills against 3.3 million Medicare rules and NCCI edits. Flags unbundling, upcoding, and duplicates instantly.",
-        cost: "$0 (free)",
+        name: "OrbDoc + Superinsight.ai (Bill Auditing)",
+        description: "OrbDoc compares bills against 3.3 million Medicare rules and NCCI edits. Flags unbundling, upcoding, and duplicates instantly. Superinsight.ai adds PI-specific cross-referencing for deeper analysis.",
+        cost: "$0 (OrbDoc free)",
         icon: Receipt,
       },
     ],
@@ -115,20 +122,20 @@ const problemAreas: ProblemArea[] = [
     tools: [
       {
         name: "Clio Advanced + Draft",
-        description: "Practice management foundation. CRM, intake forms, e-sign, calendaring, billing. Document automation with auto-populated templates from case files.",
+        description: "Practice management foundation. CRM, intake forms, e-sign, calendaring, billing. Clio Draft adds document automation with auto-populated templates from case files. Gavel (~$99/mo) available as upgrade if conditional logic exceeds Draft's capabilities.",
         cost: "~$168-198/mo",
         icon: Briefcase,
         tag: "Foundation",
       },
       {
         name: "Briefpoint",
-        description: "AI generates discovery documents — interrogatories, requests for production, requests for admission. Cuts drafting time by up to 95%.",
-        cost: "~$99/mo",
+        description: "AI generates discovery documents -- interrogatories, requests for production, requests for admission. Cuts drafting time by up to 95%. Pairs with personal case library RAG.",
+        cost: "~$50-100/mo",
         icon: FileText,
       },
       {
         name: "Trust Accounting / LawPay",
-        description: "Full configuration of Clio trust accounting plus LawPay integration for compliant IOLTA management.",
+        description: "Full configuration of Clio trust accounting plus LawPay integration for compliant IOLTA management. Georgia Bar Rule 1.15 compliance.",
         cost: "$0-49/mo",
         icon: Shield,
       },
@@ -142,15 +149,21 @@ const problemAreas: ProblemArea[] = [
     tools: [
       {
         name: "Full Litigation Deadline Management",
-        description: "SOL, ante litem (6/12-mo gov't), discovery cutoffs, expert disclosure, pre-trial, mediation deadlines — all with escalating 7/14/30-day reminders.",
+        description: "SOL (PI: 2yr; med mal: 2yr discovery/5yr outer; minors: tolled to 18+2), ante litem (6mo counties/municipalities; 12mo State), discovery cutoffs (30 days Georgia), expert disclosure, pre-trial, mediation deadlines -- all with escalating 7/14/30-day reminders.",
         cost: "$0 incremental",
         icon: Calendar,
       },
       {
         name: "Spoliation Letter Automation",
-        description: "Customized spoliation letter per defendant type generated within minutes of case opening. Preservation letters within 72 hours guaranteed.",
+        description: "Customized spoliation letter per defendant type (individual, corporate, trucking, hospital, government entity) generated within minutes of case opening. Preservation letters within 72 hours guaranteed.",
         cost: "$0 incremental",
         icon: AlertTriangle,
+      },
+      {
+        name: "Lien Tracking + Resolution Assistant",
+        description: "Tracks all outstanding liens (Medicare, Medicaid, ERISA, provider), calculates running net-to-client at different settlement amounts, and auto-drafts negotiation and waiver letters. Critical given personal liability exposure for missed Medicare liens.",
+        cost: "$0 incremental",
+        icon: Scale,
       },
     ],
   },
@@ -162,21 +175,28 @@ const problemAreas: ProblemArea[] = [
     tools: [
       {
         name: "Fastcase + CoCounsel",
-        description: "Fastcase free via Georgia Bar. CoCounsel adds AI research memos, citation verification, deposition analysis, and cross-examination outlines.",
+        description: "Fastcase free via Georgia Bar. CoCounsel adds AI research memos, citation verification, deposition analysis, and cross-examination outlines. Feed it the complaint, answer, and key records -- it produces a cross-examination outline for trial prep.",
         cost: "$0-65/mo",
         icon: Search,
       },
       {
         name: "Trellis",
-        description: "Georgia court and judge analytics. See how your assigned judge rules on motions before you file. How defense firms in your venues perform at trial.",
+        description: "Georgia court and judge analytics. See how your assigned judge rules on motions, how defense firms in your venues perform at trial, and historical outcomes by case type.",
         cost: "~$79-149/mo",
         icon: BarChart3,
       },
       {
         name: "CaseYak",
-        description: "Free AI settlement value predictor for MVA cases. Useful at intake to triage whether a case justifies the time investment.",
+        description: "Free AI settlement value predictor for MVA cases. Useful at intake to triage whether a case justifies the time investment. For internal intake triage only.",
         cost: "$0 (free)",
         icon: Car,
+      },
+      {
+        name: "Expert Institute / Expert Radar",
+        description: "1M+ vetted experts across every specialty. Expert Radar AI analyzes an expert's complete litigation history -- prior depositions, Daubert challenges, published opinions. Critical for cert of merit, opposing expert vetting, and new expert discovery.",
+        cost: "Quote-based",
+        icon: Award,
+        tag: "Med Mal Essential",
       },
     ],
   },
@@ -188,9 +208,15 @@ const problemAreas: ProblemArea[] = [
     tools: [
       {
         name: "Tracers / TLOxp",
-        description: "AI-powered investigative data from 120+ billion records. Locate defendants, identify insurance carriers, find witnesses, research assets.",
+        description: "AI-powered investigative data from 120+ billion records. Locate defendants, identify insurance carriers, find witnesses, research assets. On a truck wreck, identifying the employer's commercial carrier rather than the driver's personal policy changes the recovery entirely.",
         cost: "~$39-150/mo",
         icon: UserSearch,
+      },
+      {
+        name: "Social Media Evidence + Client Monitoring",
+        description: "Documents all publicly available social profiles for opposing parties at case opening. Flags client posts that could undercut damages claims before the defense finds them. Preservation memo generated; clients advised what to lock down. Public content only -- Georgia Bar compliant.",
+        cost: "$0 (protocol)",
+        icon: Globe,
       },
     ],
   },
@@ -202,14 +228,32 @@ const problemAreas: ProblemArea[] = [
     tools: [
       {
         name: "Skribe",
-        description: "AI deposition capture at ~$349/hr vs. $350-500/hr for traditional reporters. Searchable, timestamped transcripts synced to video.",
-        cost: "~$349/hr",
+        description: "AI-assisted deposition capture. Live captionist monitors in real time while AI verifies and indexes the transcript. Searchable, timestamped transcripts synced to video. Savings vs. traditional reporters can exceed $2,000-4,000 per complex med mal case.",
+        cost: "~$349/hr live; ~$50-200/depo standard",
         icon: Mic,
       },
       {
         name: "TrialPad",
-        description: "Industry-standard iPad app for courtroom evidence presentation. Annotate documents, callout key passages, zoom into photos.",
+        description: "Industry-standard iPad app for courtroom evidence presentation. Annotate documents, callout key passages, zoom into photos, sync to courtroom display.",
         cost: "~$130 one-time",
+        icon: Presentation,
+      },
+      {
+        name: "Deposition Prep Workflow",
+        description: "CoCounsel + custom prompt templates generate cross-examination outlines, contradiction maps, and risk analyses. Compresses 8-15 hours of deposition prep into under an hour.",
+        cost: "$0 incremental",
+        icon: Brain,
+      },
+      {
+        name: "Voir Dire Preparation + Juror Research",
+        description: "AI analysis of juror questionnaire responses against bias indicators for PI/med mal, custom voir dire question library per case type, and Trellis venue data on historical jury behavior.",
+        cost: "$0 incremental",
+        icon: Users,
+      },
+      {
+        name: "Case Timeline Exhibits",
+        description: "Supio's medical chronology and Clio case milestones assembled into a professional visual timeline exhibit for mediation and trial presentations.",
+        cost: "$0-15/mo (Canva Pro)",
         icon: Presentation,
       },
     ],
@@ -222,15 +266,33 @@ const problemAreas: ProblemArea[] = [
     tools: [
       {
         name: "Settlement Authority Memo",
-        description: "Pre-mediation memo combining Trellis venue data, EvenUp damages analysis, and liability assessment into data-supported authority range.",
+        description: "Pre-mediation memo combining Trellis venue data, EvenUp damages analysis, and liability assessment into data-supported authority range with low/mid/high scenarios.",
         cost: "$0 incremental",
         icon: Brain,
       },
       {
+        name: "Mediation Brief Automation",
+        description: "AI-assisted workflow drafting a complete mediation brief from Supio's chronology, EvenUp's damages analysis, and Trellis comparable verdicts. Cuts 4-8 hours to 90 minutes.",
+        cost: "$0 incremental",
+        icon: FileText,
+      },
+      {
         name: "Low Offer Response Package",
-        description: "Formal written response supported by comparable Georgia verdicts, updated medical projections, and point-by-point liability rebuttal.",
+        description: "Formal written response supported by comparable Georgia verdicts, updated medical projections, and point-by-point liability rebuttal -- drafted and ready in under an hour.",
         cost: "$0 incremental",
         icon: TrendingUp,
+      },
+      {
+        name: "Settlement Disbursement Automation",
+        description: "Gavel generates disbursement statement and closing letter with calculated fields -- gross settlement, attorney fee, costs, lien payoffs, net-to-client. Clio trust accounting supports disbursements.",
+        cost: "$0 incremental",
+        icon: Banknote,
+      },
+      {
+        name: "Ringler (Structured Settlements)",
+        description: "Models periodic-payment alternatives to lump-sum settlements for catastrophic injury, TBI, and minor-claimant cases. AI flags eligible settlements automatically. Planner compensated by life insurance company -- no direct cost.",
+        cost: "$0 (referral model)",
+        icon: Shield,
       },
     ],
   },
@@ -242,19 +304,19 @@ const problemAreas: ProblemArea[] = [
     tools: [
       {
         name: "Microsoft Copilot",
-        description: "AI directly in Outlook and Word. Email chain summarization, correspondence drafting, document review. Saves 30+ minutes per day.",
+        description: "AI directly in Outlook and Word. Email chain summarization before client calls, correspondence drafting, document review for settlement agreements and insurance coverage letters. Saves 30+ minutes per day.",
         cost: "~$30/mo",
         icon: Monitor,
       },
       {
         name: "WisprFlow / Dragon Legal",
-        description: "AI voice dictation captures post-meeting debriefs, structures output into formatted case memos synced to Clio.",
+        description: "AI voice dictation captures post-meeting/post-hearing debriefs, structures output into formatted case memos synced to Clio. Recovers 15 minutes per client touchpoint.",
         cost: "~$10-50/mo",
         icon: Volume2,
       },
       {
         name: "Jamie",
-        description: "Automatically transcribes and summarizes calls without joining as a visible bot. Syncs to Clio as case notes.",
+        description: "Automatically transcribes and summarizes calls without joining as a visible bot. Syncs to Clio as case notes. Georgia one-party consent applies; recording disclosure included in ethics policy.",
         cost: "~$24/mo",
         icon: PhoneCall,
       },
@@ -268,19 +330,31 @@ const problemAreas: ProblemArea[] = [
     tools: [
       {
         name: "Reviewly.ai",
-        description: "Monitors Google reviews and generates professional, firm-branded response drafts. Automated review request campaigns.",
+        description: "Monitors Google reviews and generates professional, firm-branded response drafts. Automated review request campaigns via SMS and email.",
         cost: "~$49-99/mo",
         icon: Star,
       },
       {
         name: "ChatGPT Pro (Content)",
-        description: "Content drafting for blog posts, practice area pages, and social media. Clio Grow tracking identifies which channels drive qualified leads.",
+        description: "Content drafting for blog posts, practice area pages, and social media. All content must comply with Georgia Rules 7.1-7.5 on attorney advertising.",
         cost: "~$20/mo",
         icon: Megaphone,
       },
       {
+        name: "Incident + News Monitoring",
+        description: "Google Alerts (free) or Mentionlytics (~$69/mo) monitors local news and social media for accidents in your markets before they appear in court filings -- for referral network activation and targeted advertising.",
+        cost: "$0-69/mo",
+        icon: Newspaper,
+      },
+      {
+        name: "Warm Lead Nurture Sequences",
+        description: "Clio Grow case-type-specific SMS and email drip sequences for consultations that don't sign immediately. Recovers signed cases from leads who said 'I need to think about it.'",
+        cost: "$0 incremental",
+        icon: Mail,
+      },
+      {
         name: "LawKPIs",
-        description: "Dashboard aggregating intake, matter, financial, and productivity data. Practice-area profitability, intake conversion, time-to-cash by case type.",
+        description: "Dashboard aggregating intake, matter, financial, and productivity data. Practice-area profitability, intake conversion, time-to-cash by case type, referral ROI by office.",
         cost: "~$50/mo",
         icon: BarChart3,
       },
@@ -302,9 +376,9 @@ export function ToolsSection() {
             Tools by Problem Area
           </h2>
           <p className="mb-5 max-w-3xl font-sans text-sm leading-relaxed text-muted-foreground">
-            Eleven off-the-shelf tools form the infrastructure OpenClaw runs on. Each solves
-            a specific, expensive problem. No required order — pick what matches your biggest
-            pain point first. Everything connects to Clio.
+            Thirty-plus tools across eleven problem areas form the infrastructure OpenClaw runs on.
+            Each solves a specific, expensive problem. No required order &mdash; pick what matches your
+            biggest pain point first. Everything connects to Clio.
           </p>
         </div>
 
@@ -314,11 +388,11 @@ export function ToolsSection() {
             If you only do one thing after this conversation
           </p>
           <p className="mb-2 font-sans text-sm font-bold text-navy">
-            Clio Grow + Smith.ai — the intake foundation.
+            Clio Grow + Smith.ai &mdash; the intake foundation.
           </p>
           <p className="font-sans text-sm leading-relaxed text-foreground">
             Every other tool in this document connects to Clio. And every call that hits voicemail
-            after hours is a lead you{"'"}ve already lost — invisibly, with no record that it happened.
+            after hours is a lead you{"'"}ve already lost &mdash; invisibly, with no record that it happened.
             Clio gives you the foundation everything else feeds into. Smith.ai fills the after-hours gap
             and puts qualified leads into your pipeline while you sleep.
           </p>

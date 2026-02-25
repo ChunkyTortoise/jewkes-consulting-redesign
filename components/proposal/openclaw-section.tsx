@@ -7,8 +7,8 @@ import {
   UserCheck, MessageSquare, FileText as FileTextIcon, Shield, DollarSign, Clipboard,
   PenTool, BookOpen, Scale, FileCheck, Gavel, AlertOctagon, Swords, Package,
   Search, Target, BarChart3, Link2, MapPin, Award, FileSearch, Truck,
-  BadgeCheck, Crosshair, ChevronDown, ChevronUp, Activity,
-  Globe, BookMarked, Star, Building, Megaphone, TrendingDown
+  BadgeCheck, Crosshair, Activity,
+  Globe, BookMarked, Star, Building, Megaphone, TrendingDown, Info
 } from "lucide-react"
 
 const categories = [
@@ -134,7 +134,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 }
 
 export function OpenClawSection() {
-  const [expandedCategory, setExpandedCategory] = useState<string | null>("client")
+  const [activeTab, setActiveTab] = useState("client")
+  const activeCategory = categories.find(c => c.id === activeTab) ?? categories[0]
 
   return (
     <section id="openclaw" className="bg-navy px-6 py-24">
@@ -146,7 +147,7 @@ export function OpenClawSection() {
           </div>
           <div>
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-              AI Legal Assistant
+              Section 2 &middot; AI Legal Assistant
             </p>
             <h2 className="font-serif text-2xl font-bold text-primary-foreground md:text-3xl">
               OpenClaw
@@ -155,14 +156,23 @@ export function OpenClawSection() {
         </div>
 
         <p className="mb-4 max-w-2xl font-sans text-sm leading-relaxed text-primary-foreground/70">
-          Your own AI legal assistant — configured for plaintiff PI and med mal, in your voice.
+          Your own AI legal assistant &mdash; configured for plaintiff PI and med mal, in your voice.
           Wired into your practice stack. Every tool below feeds it context, and it acts on that
           context to do real work.
         </p>
 
-        <p className="mb-12 font-sans text-xs text-primary-foreground/40">
+        <p className="mb-6 font-sans text-xs text-primary-foreground/40">
           ~$50/mo running cost after setup. Everything goes through you before it reaches a client or court.
         </p>
+
+        {/* Disclosure from proposal */}
+        <div className="mb-12 flex items-start gap-2.5 rounded-sm border border-gold/15 bg-gold/[0.04] px-4 py-3">
+          <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold/60" />
+          <p className="font-sans text-xs leading-relaxed text-primary-foreground/50">
+            <span className="font-semibold text-primary-foreground/70">Disclosure:</span>{" "}
+            OpenClaw Consulting is my firm. I recommend this configuration because I believe it fits &mdash; weigh that accordingly.
+          </p>
+        </div>
 
         {/* Data feeds */}
         <div className="mb-12 grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -174,80 +184,69 @@ export function OpenClawSection() {
           ].map((feed) => (
             <div key={feed.label} className="rounded-sm border border-navy-mid bg-navy-mid/30 p-3">
               <p className="font-sans text-xs font-bold text-primary-foreground">{feed.label}</p>
-              <p className="font-sans text-[11px] text-primary-foreground/50">{feed.sub}</p>
+              <p className="font-sans text-xs text-primary-foreground/50">{feed.sub}</p>
             </div>
           ))}
         </div>
 
-        {/* 42 Powers */}
+        {/* 42 Powers - Tabbed Interface */}
         <div className="mb-6">
           <p className="font-sans text-lg font-bold text-primary-foreground">
             42 Use Cases
           </p>
           <p className="font-sans text-xs text-primary-foreground/40">
-            Click a category to expand its capabilities.
+            Select a category to view its capabilities.
           </p>
         </div>
 
-        <div className="flex flex-col gap-3">
-          {categories.map((cat) => {
-            const isExpanded = expandedCategory === cat.id
-            return (
-              <div key={cat.id} className="overflow-hidden rounded-sm border border-navy-mid">
-                <button
-                  onClick={() => setExpandedCategory(isExpanded ? null : cat.id)}
-                  className="flex w-full items-center gap-3 bg-navy-mid/20 px-5 py-4 transition-colors hover:bg-navy-mid/40"
-                >
-                  <div
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm"
-                    style={{ backgroundColor: `${cat.color}20` }}
-                  >
-                    <cat.icon className="h-4 w-4" style={{ color: cat.color }} />
-                  </div>
-                  <span className="font-sans text-sm font-bold text-primary-foreground">
-                    {cat.label}
-                  </span>
-                  <span
-                    className="ml-1 font-sans text-xs font-medium"
-                    style={{ color: cat.color }}
-                  >
-                    {cat.capabilities.length}
-                  </span>
-                  <div className="ml-auto text-primary-foreground/40">
-                    {isExpanded ? (
-                      <ChevronUp className="h-4 w-4" />
-                    ) : (
-                      <ChevronDown className="h-4 w-4" />
-                    )}
-                  </div>
-                </button>
+        {/* Tab buttons */}
+        <div className="mb-4 flex flex-wrap gap-2">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveTab(cat.id)}
+              className={cn(
+                "flex items-center gap-2 rounded-sm px-4 py-2.5 font-sans text-xs font-bold transition-all",
+                activeTab === cat.id
+                  ? "bg-gold/15 text-gold shadow-sm"
+                  : "bg-navy-mid/20 text-primary-foreground/60 hover:bg-navy-mid/40 hover:text-primary-foreground/80"
+              )}
+            >
+              <cat.icon className="h-3.5 w-3.5" style={{ color: activeTab === cat.id ? cat.color : undefined }} />
+              {cat.label}
+              <span
+                className="font-sans text-[10px] font-medium"
+                style={{ color: cat.color }}
+              >
+                {cat.capabilities.length}
+              </span>
+            </button>
+          ))}
+        </div>
 
-                {isExpanded && (
-                  <div className="grid gap-2 bg-navy/60 p-4 md:grid-cols-2 lg:grid-cols-3">
-                    {cat.capabilities.map((cap) => {
-                      const Icon = iconMap[cap.name] || FileTextIcon
-                      return (
-                        <div
-                          key={cap.name}
-                          className="rounded-sm border border-navy-mid/60 bg-navy-mid/10 p-3 transition-colors hover:border-navy-mid"
-                        >
-                          <div className="mb-2 flex items-center gap-2">
-                            <Icon className="h-3.5 w-3.5 shrink-0" style={{ color: cat.color }} />
-                            <p className="font-sans text-xs font-bold text-primary-foreground">
-                              {cap.name}
-                            </p>
-                          </div>
-                          <p className="font-sans text-[11px] leading-relaxed text-primary-foreground/50">
-                            {cap.desc}
-                          </p>
-                        </div>
-                      )
-                    })}
+        {/* Always-visible grid for active tab */}
+        <div className="rounded-sm border border-navy-mid bg-navy/60 p-4">
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {activeCategory.capabilities.map((cap) => {
+              const Icon = iconMap[cap.name] || FileTextIcon
+              return (
+                <div
+                  key={cap.name}
+                  className="rounded-sm border border-navy-mid/60 bg-navy-mid/10 p-3 transition-colors hover:border-navy-mid"
+                >
+                  <div className="mb-2 flex items-center gap-2">
+                    <Icon className="h-3.5 w-3.5 shrink-0" style={{ color: activeCategory.color }} />
+                    <p className="font-sans text-xs font-bold text-primary-foreground">
+                      {cap.name}
+                    </p>
                   </div>
-                )}
-              </div>
-            )
-          })}
+                  <p className="font-sans text-xs leading-relaxed text-primary-foreground/50">
+                    {cap.desc}
+                  </p>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>

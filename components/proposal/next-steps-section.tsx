@@ -4,7 +4,7 @@ const steps = [
   {
     number: "01",
     title: "You decide what matters most",
-    description: "Review the tools above and flag the items that match your biggest pain points. No required starting point — pick what's most valuable to you right now.",
+    description: "Review the tools above and flag the items that match your biggest pain points. No required starting point -- pick what's most valuable to you right now.",
   },
   {
     number: "02",
@@ -14,32 +14,22 @@ const steps = [
   {
     number: "03",
     title: "I send the agreement",
-    description: "One or two pages. Plain language. Deliverables, timeline, and fee. Foundation, Core Practice, or Full Stack — or a custom scope. You sign, we start.",
+    description: "One or two pages. Plain language. Deliverables, timeline, and fee. Foundation, Core Practice, or Full Stack -- or a custom scope. You sign, we start.",
   },
   {
     number: "04",
     title: "Setup begins",
-    description: "You give me access to Clio (or we create a new account), share your existing intake workflow, and provide branding assets (logo, firm colors, bio). I take it from there.",
+    description: "You give me access to Clio (or we create a new account), share your existing intake workflow, and provide branding assets. I take it from there.",
   },
   {
     number: "05",
     title: "Staff training + handoff",
-    description: "60-90 minute walkthrough of all configured tools. Written system documentation for your reference. 30-day post-launch support for questions and minor adjustments.",
+    description: "60-90 minute walkthrough of all configured tools. Written system documentation. 30-day post-launch support for questions and adjustments.",
   },
   {
     number: "06",
-    title: "30-day check-in",
-    description: "We review what's working — lead capture rates, client communication volume, time saved on demands — and adjust anything that needs tuning.",
-  },
-  {
-    number: "07",
-    title: "Add more when ready",
-    description: "Once the first items are producing results, we layer in whatever's next on your list. The stack is modular — add at your pace.",
-  },
-  {
-    number: "08",
-    title: "Case study + referral",
-    description: "After 90 days, I'll share anonymized results from our work together (with your permission) as a case study. If you know other attorneys who could benefit, I'm happy to offer a referral courtesy.",
+    title: "30-day check-in, then add more",
+    description: "We review what's working -- lead capture rates, client communication volume, time saved -- and adjust. Once the first items are producing results, we layer in whatever's next.",
   },
 ]
 
@@ -54,13 +44,13 @@ export function NextStepsSection() {
           Tell me which problems matter most.
         </h2>
 
-        <div className="mb-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mb-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((step) => (
-            <div key={step.number} className="flex gap-3 rounded-sm border border-navy-mid bg-navy-mid/15 p-4">
+            <div key={step.number} className="flex gap-3 rounded-sm border border-navy-mid bg-navy-mid/15 p-5">
               <span className="font-mono text-xl font-bold text-gold/20">{step.number}</span>
               <div>
-                <p className="mb-1 font-sans text-xs font-bold text-primary-foreground">{step.title}</p>
-                <p className="font-sans text-[11px] leading-relaxed text-primary-foreground/50">{step.description}</p>
+                <p className="mb-1 font-sans text-sm font-bold text-primary-foreground">{step.title}</p>
+                <p className="font-sans text-xs leading-relaxed text-primary-foreground/50">{step.description}</p>
               </div>
             </div>
           ))}
@@ -87,7 +77,7 @@ export function NextStepsSection() {
             cayman@openclaw.consulting
             <ArrowRight className="h-4 w-4" />
           </a>
-          <p className="mt-4 font-sans text-[11px] text-primary-foreground/30">
+          <p className="mt-4 font-sans text-xs text-primary-foreground/30">
             Cayman Roden &middot; AI Integration Consultant &middot; OpenClaw Consulting
           </p>
         </div>
