@@ -88,7 +88,7 @@ const categories = [
   },
 ]
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   "Client Intake Screening": UserCheck,
   "Client FAQ & Status": MessageSquare,
   "New Client Onboarding": FileTextIcon,

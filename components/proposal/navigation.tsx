@@ -52,12 +52,20 @@ export function Navigation() {
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
+    if (!mobileOpen) return
+    const prior = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => { document.body.style.overflow = prior }
+  }, [mobileOpen])
+
+  // Close mobile menu on viewport resize to desktop
+  useEffect(() => {
+    if (!mobileOpen) return
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setMobileOpen(false)
     }
-    return () => { document.body.style.overflow = "" }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
   }, [mobileOpen])
 
   const scrollToTop = () => {
@@ -74,15 +82,18 @@ export function Navigation() {
             : "bg-transparent"
         )}
       >
-        {/* Progress bar */}
-        {scrolled && (
-          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-navy-mid/30">
-            <div
-              className="h-full bg-gold/60 transition-[width] duration-150 ease-out"
-              style={{ width: `${scrollProgress}%` }}
-            />
-          </div>
-        )}
+        {/* Progress bar — always rendered, fades in/out to preserve CSS transition */}
+        <div
+          className={cn(
+            "absolute bottom-0 left-0 right-0 h-[2px] bg-navy-mid/30 transition-opacity duration-300",
+            scrolled ? "opacity-100" : "opacity-0"
+          )}
+        >
+          <div
+            className="h-full bg-gold/60 transition-[width] duration-150 ease-out"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
 
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <a href="#overview" className="flex items-center gap-3">

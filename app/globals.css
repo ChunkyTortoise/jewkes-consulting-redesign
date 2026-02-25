@@ -81,8 +81,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Lato', 'Geist', sans-serif;
-  --font-serif: 'Merriweather', 'Georgia', serif;
+  --font-sans: var(--font-lato), 'Lato', sans-serif;
+  --font-serif: var(--font-merriweather), 'Merriweather', Georgia, serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-navy: var(--navy);
   --color-navy-mid: var(--navy-mid);
