@@ -2,7 +2,7 @@ import { ArrowDown } from "lucide-react"
 
 export function Hero() {
   return (
-    <section id="overview" className="relative flex min-h-screen flex-col items-center justify-center bg-navy px-6 text-center">
+    <section id="overview" className="relative flex min-h-screen flex-col items-center justify-center bg-navy px-6 pt-20 pb-28 text-center">
       {/* Geometric accent pattern */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -right-32 top-1/4 h-80 w-80 rounded-full border border-gold/10" />
@@ -93,7 +93,7 @@ export function Hero() {
       </div>
 
       {/* Meta block */}
-      <div className="absolute bottom-12 left-0 right-0 z-10 flex flex-col items-center gap-4">
+      <div className="mt-auto left-0 right-0 z-10 flex flex-col items-center gap-4 pt-10">
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 font-sans text-xs text-gold-light/40">
           <span><span className="text-gold-light/60">Prepared by</span> Cayman Roden</span>
           <span className="hidden sm:inline">&middot;</span>
