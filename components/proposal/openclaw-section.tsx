@@ -190,33 +190,45 @@ export function OpenClawSection() {
         </div>
 
         {/* 42 Powers - Tabbed Interface */}
-        <div className="mb-6">
-          <p className="font-sans text-lg font-bold text-primary-foreground">
-            42 Use Cases
-          </p>
-          <p className="font-sans text-xs text-primary-foreground/40">
-            Select a category to view its capabilities.
-          </p>
+        <div className="mb-4 flex items-end justify-between gap-4">
+          <div>
+            <p className="font-sans text-lg font-bold text-primary-foreground">
+              42 Use Cases
+            </p>
+            <p className="font-sans text-xs text-primary-foreground/40">
+              {categories.map(c => `${c.capabilities.length} ${c.label}`).join(' · ')}
+            </p>
+          </div>
         </div>
 
-        {/* Tab buttons */}
-        <div className="mb-4 flex flex-wrap gap-2">
+        {/* Tab buttons — upgraded to primary navigation weight */}
+        <div className="mb-0 flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
               className={cn(
-                "flex items-center gap-2 rounded-sm px-4 py-2.5 font-sans text-xs font-bold transition-all",
+                "flex items-center gap-2.5 rounded-sm px-5 py-3 font-sans text-sm font-bold transition-all",
                 activeTab === cat.id
-                  ? "bg-gold/15 text-gold shadow-sm"
+                  ? "shadow-sm"
                   : "bg-navy-mid/20 text-primary-foreground/60 hover:bg-navy-mid/40 hover:text-primary-foreground/80"
               )}
+              style={activeTab === cat.id ? {
+                backgroundColor: `${cat.color}18`,
+                color: cat.color,
+              } : undefined}
             >
-              <cat.icon className="h-3.5 w-3.5" style={{ color: activeTab === cat.id ? cat.color : undefined }} />
+              <cat.icon
+                className="h-4 w-4"
+                style={{ color: activeTab === cat.id ? cat.color : undefined }}
+              />
               {cat.label}
               <span
-                className="font-sans text-[10px] font-medium"
-                style={{ color: cat.color }}
+                className="inline-flex h-5 min-w-5 items-center justify-center rounded-sm px-1 font-sans text-xs font-bold"
+                style={{
+                  backgroundColor: activeTab === cat.id ? `${cat.color}30` : 'rgba(255,255,255,0.08)',
+                  color: cat.color,
+                }}
               >
                 {cat.capabilities.length}
               </span>
@@ -224,8 +236,14 @@ export function OpenClawSection() {
           ))}
         </div>
 
-        {/* Always-visible grid for active tab */}
-        <div className="rounded-sm border border-navy-mid bg-navy/60 p-4">
+        {/* Always-visible grid for active tab — with category color left-border accent */}
+        <div
+          className="rounded-sm border border-navy-mid bg-navy/60 p-4 mt-0 border-t-0 rounded-tl-none"
+          style={{ borderTopColor: activeCategory.color, borderTopWidth: '3px', borderTopStyle: 'solid' }}
+        >
+          <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-widest" style={{ color: activeCategory.color }}>
+            {activeCategory.label} &mdash; {activeCategory.capabilities.length} capabilities
+          </p>
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {activeCategory.capabilities.map((cap) => {
               const Icon = iconMap[cap.name] || FileTextIcon

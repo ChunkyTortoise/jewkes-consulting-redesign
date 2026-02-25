@@ -108,62 +108,123 @@ export function PricingSection() {
         <h2 className="mb-5 font-serif text-3xl font-bold text-navy md:text-4xl text-balance">
           Three engagement tiers. Pick what fits.
         </h2>
-        <p className="mb-12 max-w-2xl font-sans text-sm leading-relaxed text-muted-foreground">
+        <p className="mb-8 max-w-2xl font-sans text-sm leading-relaxed text-muted-foreground">
           No locked packages. No required order. Start with what solves your most expensive
           problem first. Each tier includes configuration, integration, training, staff walkthrough
           (60-90 min), system documentation, and 30-day post-launch support.
         </p>
 
-        {/* Tier cards */}
-        <div className="mb-16 grid gap-4 lg:grid-cols-3">
-          {tiers.map((tier) => (
-            <div
-              key={tier.id}
-              className={cn(
-                "relative flex flex-col rounded-sm border p-6 transition-all",
-                tier.highlight
-                  ? "border-gold bg-card shadow-md"
-                  : "border-border bg-card"
-              )}
-            >
-              {tier.highlight && (
-                <div className="absolute -top-px left-6 right-6 h-1 rounded-b-sm bg-gold" />
-              )}
-
-              <div className="mb-4">
-                <p className={cn(
-                  "mb-1 font-sans text-[10px] font-bold uppercase tracking-widest",
-                  tier.highlight ? "text-gold" : "text-muted-foreground"
-                )}>
-                  {tier.tag}
-                </p>
-                <h3 className="font-serif text-xl font-bold text-navy">{tier.name}</h3>
-                <p className="mt-1 font-sans text-xs text-muted-foreground">{tier.description}</p>
-              </div>
-
-              <p className="mb-5 font-serif text-2xl font-bold text-navy">
-                {tier.monthlyCost}
-                <span className="ml-1 font-sans text-xs font-normal text-muted-foreground">tools</span>
+        {/* Engagement fee callout — stated upfront */}
+        <div className="mb-12 rounded-sm border border-gold/30 bg-navy p-5">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="mb-1 font-sans text-xs font-bold uppercase tracking-widest text-gold">
+                Consulting Engagement Fee
               </p>
-
-              <ul className="mb-6 flex flex-1 flex-col gap-2">
-                {tier.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <Check className={cn(
-                      "mt-0.5 h-3.5 w-3.5 shrink-0",
-                      tier.highlight ? "text-gold" : "text-muted-foreground"
-                    )} />
-                    <span className="font-sans text-xs leading-relaxed text-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex items-center gap-2 border-t border-border pt-4">
-                <Clock className="h-3 w-3 text-muted-foreground" />
-                <p className="font-sans text-[11px] text-muted-foreground">{tier.timeline}</p>
-              </div>
+              <p className="font-serif text-2xl font-bold text-primary-foreground">
+                $6,500 – $12,000
+              </p>
+              <p className="mt-1 font-sans text-xs leading-relaxed text-primary-foreground/60">
+                Covers configuration, integration, training, staff walkthrough, and 30-day post-launch support.
+                Distinct from the ongoing tool subscriptions shown in each tier below.
+              </p>
             </div>
-          ))}
+            <div className="shrink-0 rounded-sm border border-navy-mid bg-navy-mid/40 p-4 text-left sm:text-right">
+              <p className="font-sans text-[11px] font-semibold uppercase tracking-wider text-primary-foreground/50">Payment Terms</p>
+              <p className="mt-1 font-sans text-sm font-bold text-primary-foreground">50% at kickoff</p>
+              <p className="font-sans text-sm font-bold text-primary-foreground">50% at handoff</p>
+              <p className="mt-1 font-sans text-[11px] text-primary-foreground/40">Monthly retainer available</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Tier cards — visually differentiated */}
+        <div className="mb-16 grid gap-4 lg:grid-cols-3">
+          {tiers.map((tier) => {
+            const isFoundation = tier.id === "foundation"
+            const isCore = tier.id === "core"
+            const isFullStack = tier.id === "full-stack"
+            return (
+              <div
+                key={tier.id}
+                className={cn(
+                  "relative flex flex-col rounded-sm border p-6 transition-all",
+                  isCore
+                    ? "border-gold bg-navy text-primary-foreground shadow-lg"
+                    : isFullStack
+                    ? "border-navy bg-surface-alt"
+                    : "border-border bg-card"
+                )}
+              >
+                {/* Top accent bar */}
+                {isCore && (
+                  <div className="absolute left-0 right-0 top-0 h-1.5 rounded-t-sm bg-gold" />
+                )}
+                {isFullStack && (
+                  <div className="absolute left-0 right-0 top-0 h-1.5 rounded-t-sm bg-navy" />
+                )}
+
+                <div className="mb-4">
+                  <p className={cn(
+                    "mb-1 font-sans text-[10px] font-bold uppercase tracking-widest",
+                    isCore ? "text-gold" : isFullStack ? "text-navy/60" : "text-muted-foreground"
+                  )}>
+                    {tier.tag}
+                  </p>
+                  <h3 className={cn(
+                    "font-serif text-xl font-bold",
+                    isCore ? "text-primary-foreground" : "text-navy"
+                  )}>{tier.name}</h3>
+                  <p className={cn(
+                    "mt-1 font-sans text-xs",
+                    isCore ? "text-primary-foreground/60" : "text-muted-foreground"
+                  )}>{tier.description}</p>
+                </div>
+
+                <div className="mb-5">
+                  <p className={cn(
+                    "font-serif font-bold",
+                    isCore ? "text-3xl text-gold" : "text-2xl text-navy"
+                  )}>
+                    {tier.monthlyCost}
+                  </p>
+                  <p className={cn(
+                    "font-sans text-xs",
+                    isCore ? "text-primary-foreground/50" : "text-muted-foreground"
+                  )}>monthly tool subscriptions</p>
+                </div>
+
+                <ul className="mb-6 flex flex-1 flex-col gap-2">
+                  {tier.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <Check className={cn(
+                        "mt-0.5 h-3.5 w-3.5 shrink-0",
+                        isCore ? "text-gold" : isFullStack ? "text-navy/60" : "text-muted-foreground"
+                      )} />
+                      <span className={cn(
+                        "font-sans text-xs leading-relaxed",
+                        isCore ? "text-primary-foreground/80" : "text-foreground"
+                      )}>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className={cn(
+                  "flex items-center gap-2 border-t pt-4",
+                  isCore ? "border-navy-mid" : "border-border"
+                )}>
+                  <Clock className={cn(
+                    "h-3 w-3",
+                    isCore ? "text-primary-foreground/40" : "text-muted-foreground"
+                  )} />
+                  <p className={cn(
+                    "font-sans text-[11px]",
+                    isCore ? "text-primary-foreground/50" : "text-muted-foreground"
+                  )}>{tier.timeline}</p>
+                </div>
+              </div>
+            )
+          })}
         </div>
 
         {/* OpenClaw-first callout */}

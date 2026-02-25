@@ -108,7 +108,9 @@ const deliverables = [
 
 export function DeliverablesSection() {
   return (
-    <section id="deliverables" className="bg-surface px-6 py-24">
+    <section id="deliverables" className="relative bg-surface-alt px-6 py-24">
+      {/* Gold hairline at top signals phase boundary within the light section group */}
+      <div className="absolute left-0 right-0 top-0 h-px bg-gold/25" />
       <div className="mx-auto max-w-6xl">
         <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
           Section 4 &middot; Configuration &amp; Setup
