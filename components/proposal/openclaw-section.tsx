@@ -149,7 +149,7 @@ export function OpenClawSection() {
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
               Section 2 &middot; AI Legal Assistant
             </p>
-            <h2 className="font-serif text-2xl font-bold text-primary-foreground md:text-3xl">
+            <h2 className="font-serif text-3xl font-bold text-primary-foreground md:text-4xl">
               OpenClaw
             </h2>
           </div>

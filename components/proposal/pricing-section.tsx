@@ -141,7 +141,6 @@ export function PricingSection() {
         {/* Tier cards — visually differentiated */}
         <div className="mb-16 grid gap-4 lg:grid-cols-3">
           {tiers.map((tier) => {
-            const isFoundation = tier.id === "foundation"
             const isCore = tier.id === "core"
             const isFullStack = tier.id === "full-stack"
             return (
