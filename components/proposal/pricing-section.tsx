@@ -32,7 +32,7 @@ const tiers = [
     description: "Foundation + the AI tools that transform how you draft, review, and prepare.",
     items: [
       "Everything in Foundation",
-      "OpenClaw AI assistant — configured for plaintiff PI/med mal, wired into Clio + Supio + Smith.ai",
+      "Custom AI assistant — configured for plaintiff PI/med mal, wired into Clio + Supio + Smith.ai",
       "EvenUp — account setup, record upload workflow, template configuration for demand types",
       "Supio — onboarding, record intake workflow, causation/deviation flagging configuration",
       "Skribe — deposition capture setup, transcript-to-RAG pipeline configuration",
@@ -75,7 +75,7 @@ const costTable = [
   { tool: "Skribe", cost: "~$349/hr live; ~$50-200/depo", note: "Per-deposition; no subscription" },
   { tool: "TrialPad", cost: "~$130 one-time", note: "iPad courtroom presentation" },
   { tool: "Microsoft Copilot", cost: "~$30/mo", note: "Email + Word AI (requires M365)" },
-  { tool: "OpenClaw", cost: "~$50/mo", note: "AI legal assistant (requires configuration)" },
+  { tool: "Custom AI Assistant", cost: "~$50/mo", note: "AI legal assistant (requires configuration)" },
   { tool: "Reviewly.ai", cost: "~$49-99/mo", note: "Google review monitoring" },
   { tool: "ChatGPT Pro", cost: "~$20/mo", note: "Content drafting" },
   { tool: "Jamie", cost: "~$24/mo", note: "Call transcription + case notes" },
@@ -91,7 +91,7 @@ const costTable = [
 const timelineSteps = [
   { week: "Week 1-2", title: "Discovery & Access", desc: "System credentials, current workflow review, Clio + Smith.ai configuration begins" },
   { week: "Week 2-4", title: "Core Setup", desc: "Intake pipeline live, deadline automation active, Case Status milestones configured" },
-  { week: "Week 4-6", title: "AI Layer", desc: "OpenClaw assistant configuration, EvenUp + Supio onboarding, document templates" },
+  { week: "Week 4-6", title: "AI Layer", desc: "AI assistant configuration, EvenUp + Supio onboarding, document templates" },
   { week: "Week 6-10", title: "Knowledge Databases", desc: "RAG builds, expert witness indexing, carrier playbook population (Full Stack only)" },
   { week: "Final Week", title: "Handoff", desc: "Staff training, documentation handoff, 30-day support period begins, completion invoice issued" },
 ]
@@ -113,30 +113,6 @@ export function PricingSection() {
           problem first. Each tier includes configuration, integration, training, staff walkthrough
           (60-90 min), system documentation, and 30-day post-launch support.
         </p>
-
-        {/* Engagement fee callout — stated upfront */}
-        <div className="mb-12 rounded-sm border border-gold/30 bg-navy p-5">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="mb-1 font-sans text-xs font-bold uppercase tracking-widest text-gold">
-                Consulting Engagement Fee
-              </p>
-              <p className="font-serif text-2xl font-bold text-primary-foreground">
-                $6,500 – $12,000
-              </p>
-              <p className="mt-1 font-sans text-xs leading-relaxed text-primary-foreground/60">
-                Covers configuration, integration, training, staff walkthrough, and 30-day post-launch support.
-                Distinct from the ongoing tool subscriptions shown in each tier below.
-              </p>
-            </div>
-            <div className="shrink-0 rounded-sm border border-navy-mid bg-navy-mid/40 p-4 text-left sm:text-right">
-              <p className="font-sans text-[11px] font-semibold uppercase tracking-wider text-primary-foreground/50">Payment Terms</p>
-              <p className="mt-1 font-sans text-sm font-bold text-primary-foreground">50% at kickoff</p>
-              <p className="font-sans text-sm font-bold text-primary-foreground">50% at handoff</p>
-              <p className="mt-1 font-sans text-[11px] text-primary-foreground/40">Monthly retainer available</p>
-            </div>
-          </div>
-        </div>
 
         {/* Tier cards — visually differentiated */}
         <div className="mb-16 grid gap-4 lg:grid-cols-3">
@@ -226,11 +202,11 @@ export function PricingSection() {
           })}
         </div>
 
-        {/* OpenClaw-first callout */}
+        {/* AI-first callout */}
         <div className="mb-12 rounded-sm border border-gold/20 bg-gold/5 p-5">
-          <p className="mb-1 font-sans text-xs font-bold text-gold">Want to start with OpenClaw first?</p>
+          <p className="mb-1 font-sans text-xs font-bold text-gold">Want to start with the AI assistant first?</p>
           <p className="font-sans text-xs leading-relaxed text-foreground">
-            If the AI assistant and knowledge layer are the priority, we can scope an OpenClaw-first
+            If the AI assistant and knowledge layer are the priority, we can scope an AI-first
             engagement — configure the assistant, build one or two RAG databases, and layer in the
             practice management tools afterward.
           </p>
@@ -359,16 +335,15 @@ export function PricingSection() {
           </div>
         </div>
 
-        {/* About OpenClaw Consulting */}
+        {/* About this engagement */}
         <div className="mt-6 rounded-sm border border-border bg-card p-5">
           <p className="mb-3 font-sans text-xs font-bold uppercase tracking-widest text-gold">
-            About OpenClaw Consulting
+            About This Engagement
           </p>
           <p className="mb-2 font-sans text-sm leading-relaxed text-foreground">
-            OpenClaw Consulting specializes in AI implementation for legal practices &mdash;
-            configuration, compliance, and workflow automation. Every tool in this proposal is
-            selected because it solves a specific problem for a solo plaintiff PI/med mal practice,
-            not because of a vendor relationship.
+            Every tool in this proposal is selected because it solves a specific problem for a solo
+            plaintiff PI/med mal practice, not because of a vendor relationship. Configuration,
+            compliance, and workflow automation are scoped to your practice specifically.
           </p>
           <p className="font-sans text-xs leading-relaxed text-muted-foreground">
             These are AI systems built specifically for your practice, using your cases, your experts,

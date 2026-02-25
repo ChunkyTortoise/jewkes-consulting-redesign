@@ -143,14 +143,14 @@ export function OpenClawSection() {
         {/* Header */}
         <div className="mb-6 flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-gold">
-            <span className="font-serif text-base font-bold text-navy">OC</span>
+            <span className="font-serif text-base font-bold text-navy">AI</span>
           </div>
           <div>
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
               Section 2 &middot; AI Legal Assistant
             </p>
             <h2 className="font-serif text-3xl font-bold text-primary-foreground md:text-4xl">
-              OpenClaw
+              Custom AI Assistant
             </h2>
           </div>
         </div>

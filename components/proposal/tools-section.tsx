@@ -376,7 +376,7 @@ export function ToolsSection() {
             Tools by Problem Area
           </h2>
           <p className="mb-5 max-w-3xl font-sans text-sm leading-relaxed text-muted-foreground">
-            Thirty-plus tools across eleven problem areas form the infrastructure OpenClaw runs on.
+            Thirty-plus tools across eleven problem areas form the infrastructure this system runs on.
             Each solves a specific, expensive problem. No required order &mdash; pick what matches your
             biggest pain point first. Everything connects to Clio.
           </p>

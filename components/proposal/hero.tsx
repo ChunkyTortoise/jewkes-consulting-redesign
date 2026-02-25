@@ -97,8 +97,6 @@ export function Hero() {
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 font-sans text-xs text-gold-light/40">
           <span><span className="text-gold-light/60">Prepared by</span> Cayman Roden</span>
           <span className="hidden sm:inline">&middot;</span>
-          <span>OpenClaw Consulting</span>
-          <span className="hidden sm:inline">&middot;</span>
           <span>February 2026</span>
           <span className="hidden sm:inline">&middot;</span>
           <span>Confidential</span>

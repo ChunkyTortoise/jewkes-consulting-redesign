@@ -9,12 +9,12 @@ const complianceItems = [
   {
     icon: Shield,
     title: "Citation Verification",
-    description: "OpenClaw's legal research configuration includes automatic citation verification against Westlaw/Casetext. All AI-generated research outputs are flagged if verification fails. Georgia courts have issued sanctions for AI-hallucinated citations.",
+    description: "The legal research configuration includes automatic citation verification against Westlaw/Casetext. All AI-generated research outputs are flagged if verification fails. Georgia courts have issued sanctions for AI-hallucinated citations.",
   },
   {
     icon: Lock,
     title: "Confidentiality",
-    description: "All client case data accessed during configuration handled per legal industry data security standards. OpenClaw Consulting will not retain, copy, or use any client case data for any purpose other than completing the deliverables.",
+    description: "All client case data accessed during configuration handled per legal industry data security standards. Cayman Roden will not retain, copy, or use any client case data for any purpose other than completing the deliverables.",
   },
   {
     icon: FileCheck,
@@ -36,11 +36,11 @@ const complianceItems = [
 const engagementTerms = [
   {
     title: "Intellectual Property",
-    content: "Upon receipt of full payment, all configured systems, templates, knowledge databases, and documentation are the property of The Jewkes Firm. OpenClaw retains the right to use general methodologies and non-client-specific frameworks.",
+    content: "Upon receipt of full payment, all configured systems, templates, knowledge databases, and documentation are the property of The Jewkes Firm. Cayman Roden retains the right to use general methodologies and non-client-specific frameworks.",
   },
   {
     title: "Limitation of Liability",
-    content: "OpenClaw is not responsible for case outcomes, third-party vendor performance issues, or any claim arising from failure to supervise AI outputs before use in legal proceedings.",
+    content: "Cayman Roden is not responsible for case outcomes, third-party vendor performance issues, or any claim arising from failure to supervise AI outputs before use in legal proceedings.",
   },
   {
     title: "Termination",
