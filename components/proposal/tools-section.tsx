@@ -428,7 +428,7 @@ export function ToolsSection() {
 
                 {isExpanded && (
                   <div className="border-t border-border bg-muted/20 p-4">
-                    <div className="grid gap-3 md:grid-cols-2">
+                    <div className={cn("grid gap-3", area.tools.length >= 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2")}>
                       {area.tools.map((tool) => (
                         <div
                           key={tool.name}

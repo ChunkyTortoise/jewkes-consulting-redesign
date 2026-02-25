@@ -162,7 +162,7 @@ export function DeliverablesSection() {
                 <p className="font-sans text-[11px] leading-relaxed text-muted-foreground">
                   Replaces: {a.replaces}
                 </p>
-                <p className="mt-1 font-sans text-[10px] font-bold text-gold">$0 incremental</p>
+                <p className="mt-1 font-sans text-xs font-bold text-gold">$0 incremental</p>
               </div>
             </div>
           ))}

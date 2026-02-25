@@ -146,9 +146,9 @@ export function ComplianceSection() {
               <div key={v.vendor} className="rounded-sm border border-border bg-card p-5">
                 <p className="mb-3 font-sans text-sm font-bold text-navy">{v.vendor}</p>
                 <ol className="flex flex-col gap-2">
-                  {v.questions.map((q, i) => (
-                    <li key={i} className="flex gap-2">
-                      <span className="shrink-0 font-mono text-[10px] font-bold text-gold">{i + 1}</span>
+                  {v.questions.map((q) => (
+                    <li key={q} className="flex gap-2">
+                      <span className="shrink-0 font-mono text-[10px] font-bold text-gold">{v.questions.indexOf(q) + 1}</span>
                       <span className="font-sans text-[11px] leading-relaxed text-muted-foreground">{q}</span>
                     </li>
                   ))}

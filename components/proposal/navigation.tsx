@@ -10,7 +10,7 @@ const navItems = [
   { label: "OpenClaw AI", href: "#openclaw" },
   { label: "Tools", href: "#tools" },
   { label: "Deliverables", href: "#deliverables" },
-  { label: "Knowledge Bases", href: "#rag" },
+  { label: "Knowledge DBs", href: "#rag" },
   { label: "Pricing", href: "#pricing" },
   { label: "Compliance", href: "#compliance" },
   { label: "Next Steps", href: "#next-steps" },

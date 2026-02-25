@@ -236,9 +236,9 @@ export function OpenClawSection() {
           ))}
         </div>
 
-        {/* Always-visible grid for active tab — with category color left-border accent */}
+        {/* Always-visible grid for active tab — with category color top-border accent */}
         <div
-          className="rounded-sm border border-navy-mid bg-navy/60 p-4 mt-0 border-t-0 rounded-tl-none"
+          className="rounded-sm border border-navy-mid bg-navy/60 p-4"
           style={{ borderTopColor: activeCategory.color, borderTopWidth: '3px', borderTopStyle: 'solid' }}
         >
           <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-widest" style={{ color: activeCategory.color }}>

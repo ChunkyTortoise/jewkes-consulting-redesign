@@ -34,14 +34,8 @@ export function Hero() {
           The plaintiff version of the defense stack, priced for a solo firm.
         </h1>
 
-        <p className="mb-2 font-serif text-lg font-light text-gold md:text-xl">
-          Plaintiff Personal Injury & Medical Malpractice
-        </p>
-
-        <div className="mx-auto mb-10 h-px w-20 bg-gold/40" />
-
         {/* Vision statement as a distinct blockquote callout */}
-        <div className="mx-auto mb-8 max-w-2xl rounded-sm border-l-2 border-gold/40 bg-gold/[0.04] px-6 py-5">
+        <div className="mx-auto mb-8 max-w-2xl rounded-sm border-l-2 border-gold/40 bg-gold/[0.04] px-6 py-5 mt-8">
           <p className="font-serif text-base italic leading-relaxed text-primary-foreground/80 md:text-lg">
             You spent years on the defense side. You know what that stack looks like &mdash;
             organized discovery, indexed expert testimony, demand letters that get picked
