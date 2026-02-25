@@ -89,9 +89,9 @@ export function RAGSection() {
         {/* Section header */}
         <div className="mb-4">
           <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-            Knowledge Bases &middot; Practice Knowledge Databases
+            Section 5 &middot; Practice Knowledge Databases
           </p>
-          <h2 className="mb-5 font-serif text-2xl font-bold text-primary-foreground md:text-3xl text-balance">
+          <h2 className="mb-5 font-serif text-3xl font-bold text-primary-foreground md:text-4xl text-balance">
             Gets smarter with every transcript, matter, and article you add.
           </h2>
           <p className="mb-2 max-w-2xl font-sans text-sm leading-relaxed text-primary-foreground/60">

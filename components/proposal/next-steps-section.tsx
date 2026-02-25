@@ -38,7 +38,7 @@ export function NextStepsSection() {
     <section id="next-steps" className="bg-navy px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          Section 6 &middot; Next Steps
+          Section 8 &middot; Next Steps
         </p>
         <h2 className="mb-12 font-serif text-3xl font-bold text-primary-foreground md:text-4xl text-balance">
           Tell me which problems matter most.

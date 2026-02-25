@@ -91,7 +91,7 @@ export function ComplianceSection() {
       <div className="mx-auto max-w-6xl">
         {/* Compliance header */}
         <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          Compliance &amp; Engagement Terms
+          Section 7 &middot; Compliance &amp; Engagement Terms
         </p>
         <h2 className="mb-5 font-serif text-3xl font-bold text-navy md:text-4xl text-balance">
           Georgia Bar compliant from day one.

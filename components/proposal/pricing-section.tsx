@@ -103,7 +103,7 @@ export function PricingSection() {
     <section id="pricing" className="bg-surface px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          Section 5 &middot; Engagement & Pricing
+          Section 6 &middot; Engagement & Pricing
         </p>
         <h2 className="mb-5 font-serif text-3xl font-bold text-navy md:text-4xl text-balance">
           Three engagement tiers. Pick what fits.
@@ -265,7 +265,7 @@ export function PricingSection() {
             {timelineSteps.map((step, i) => (
               <div key={step.week} className="flex gap-4">
                 <div className="flex flex-col items-center">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-gold bg-card">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border-2 border-gold bg-card">
                     <span className="font-mono text-[10px] font-bold text-gold">{i + 1}</span>
                   </div>
                   {i < timelineSteps.length - 1 && (
@@ -379,16 +379,7 @@ export function PricingSection() {
           </p>
         </div>
 
-        {/* Fee note */}
-        <div className="mt-6 rounded-sm border border-border bg-card p-4">
-          <p className="font-sans text-xs leading-relaxed text-muted-foreground">
-            <span className="font-bold text-navy">Engagement fee</span> covers setup, configuration,
-            training, and optional ongoing support. Scope and pricing based on which tools and
-            services make sense for your practice. Payment: 50% deposit at project kickoff,
-            50% at deliverable handoff. Optional monthly retainer available for ongoing tuning,
-            new database additions, and priority support.
-          </p>
-        </div>
+
       </div>
     </section>
   )
