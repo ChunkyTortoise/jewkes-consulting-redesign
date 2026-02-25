@@ -165,22 +165,13 @@ export function OpenClawSection() {
           ~$50/mo running cost after setup. Everything goes through you before it reaches a client or court.
         </p>
 
-        {/* Disclosures */}
-        <div className="mb-12 flex flex-col gap-2">
-          <div className="flex items-start gap-2.5 rounded-sm border border-gold/15 bg-gold/[0.04] px-4 py-3">
-            <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold/60" />
-            <p className="font-sans text-xs leading-relaxed text-primary-foreground/50">
-              <span className="font-semibold text-primary-foreground/70">Disclosure:</span>{" "}
-              I recommend this configuration because I believe it fits &mdash; weigh that accordingly.
-            </p>
-          </div>
-          <div className="flex items-start gap-2.5 rounded-sm border border-gold/15 bg-gold/[0.04] px-4 py-3">
-            <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold/60" />
-            <p className="font-sans text-xs leading-relaxed text-primary-foreground/50">
-              <span className="font-semibold text-primary-foreground/70">OpenClaw Consulting is my firm.</span>{" "}
-              I recommend this configuration because I believe it fits &mdash; weigh that accordingly.
-            </p>
-          </div>
+        {/* Disclosure */}
+        <div className="mb-12 flex items-start gap-2.5 rounded-sm border border-gold/15 bg-gold/[0.04] px-4 py-3">
+          <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold/60" />
+          <p className="font-sans text-xs leading-relaxed text-primary-foreground/50">
+            <span className="font-semibold text-primary-foreground/70">Disclosure:</span>{" "}
+            OpenClaw Consulting is my firm. I recommend this configuration because I believe it fits &mdash; weigh that accordingly.
+          </p>
         </div>
 
         {/* Data feeds */}
