@@ -376,7 +376,7 @@ export function ToolsSection() {
             Tools by Problem Area
           </h2>
           <p className="mb-5 max-w-3xl font-sans text-sm leading-relaxed text-muted-foreground">
-            Thirty-plus tools across eleven problem areas form the infrastructure OpenClaw runs on.
+            Thirty-plus tools across eleven problem areas form the infrastructure this system runs on.
             Each solves a specific, expensive problem. No required order &mdash; pick what matches your
             biggest pain point first. Everything connects to Clio.
           </p>
@@ -428,7 +428,7 @@ export function ToolsSection() {
 
                 {isExpanded && (
                   <div className="border-t border-border bg-muted/20 p-4">
-                    <div className="grid gap-3 md:grid-cols-2">
+                    <div className={cn("grid gap-3", area.tools.length >= 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2")}>
                       {area.tools.map((tool) => (
                         <div
                           key={tool.name}

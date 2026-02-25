@@ -143,14 +143,14 @@ export function OpenClawSection() {
         {/* Header */}
         <div className="mb-6 flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-gold">
-            <span className="font-serif text-base font-bold text-navy">OC</span>
+            <span className="font-serif text-base font-bold text-navy">AI</span>
           </div>
           <div>
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
               Section 2 &middot; AI Legal Assistant
             </p>
-            <h2 className="font-serif text-2xl font-bold text-primary-foreground md:text-3xl">
-              OpenClaw
+            <h2 className="font-serif text-3xl font-bold text-primary-foreground md:text-4xl">
+              Custom AI Assistant
             </h2>
           </div>
         </div>
@@ -170,7 +170,7 @@ export function OpenClawSection() {
           <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold/60" />
           <p className="font-sans text-xs leading-relaxed text-primary-foreground/50">
             <span className="font-semibold text-primary-foreground/70">Disclosure:</span>{" "}
-            OpenClaw Consulting is my firm. I recommend this configuration because I believe it fits &mdash; weigh that accordingly.
+            I recommend this configuration because I believe it fits &mdash; weigh that accordingly.
           </p>
         </div>
 
@@ -190,33 +190,45 @@ export function OpenClawSection() {
         </div>
 
         {/* 42 Powers - Tabbed Interface */}
-        <div className="mb-6">
-          <p className="font-sans text-lg font-bold text-primary-foreground">
-            42 Use Cases
-          </p>
-          <p className="font-sans text-xs text-primary-foreground/40">
-            Select a category to view its capabilities.
-          </p>
+        <div className="mb-4 flex items-end justify-between gap-4">
+          <div>
+            <p className="font-sans text-lg font-bold text-primary-foreground">
+              42 Use Cases
+            </p>
+            <p className="font-sans text-xs text-primary-foreground/40">
+              {categories.map(c => `${c.capabilities.length} ${c.label}`).join(' · ')}
+            </p>
+          </div>
         </div>
 
-        {/* Tab buttons */}
-        <div className="mb-4 flex flex-wrap gap-2">
+        {/* Tab buttons — upgraded to primary navigation weight */}
+        <div className="mb-0 flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
               className={cn(
-                "flex items-center gap-2 rounded-sm px-4 py-2.5 font-sans text-xs font-bold transition-all",
+                "flex items-center gap-2.5 rounded-sm px-5 py-3 font-sans text-sm font-bold transition-all",
                 activeTab === cat.id
-                  ? "bg-gold/15 text-gold shadow-sm"
+                  ? "shadow-sm"
                   : "bg-navy-mid/20 text-primary-foreground/60 hover:bg-navy-mid/40 hover:text-primary-foreground/80"
               )}
+              style={activeTab === cat.id ? {
+                backgroundColor: `${cat.color}18`,
+                color: cat.color,
+              } : undefined}
             >
-              <cat.icon className="h-3.5 w-3.5" style={{ color: activeTab === cat.id ? cat.color : undefined }} />
+              <cat.icon
+                className="h-4 w-4"
+                style={{ color: activeTab === cat.id ? cat.color : undefined }}
+              />
               {cat.label}
               <span
-                className="font-sans text-[10px] font-medium"
-                style={{ color: cat.color }}
+                className="inline-flex h-5 min-w-5 items-center justify-center rounded-sm px-1 font-sans text-xs font-bold"
+                style={{
+                  backgroundColor: activeTab === cat.id ? `${cat.color}30` : 'rgba(255,255,255,0.08)',
+                  color: cat.color,
+                }}
               >
                 {cat.capabilities.length}
               </span>
@@ -224,8 +236,14 @@ export function OpenClawSection() {
           ))}
         </div>
 
-        {/* Always-visible grid for active tab */}
-        <div className="rounded-sm border border-navy-mid bg-navy/60 p-4">
+        {/* Always-visible grid for active tab — with category color top-border accent */}
+        <div
+          className="rounded-sm border border-navy-mid bg-navy/60 p-4"
+          style={{ borderTopColor: activeCategory.color, borderTopWidth: '3px', borderTopStyle: 'solid' }}
+        >
+          <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-widest" style={{ color: activeCategory.color }}>
+            {activeCategory.label} &mdash; {activeCategory.capabilities.length} capabilities
+          </p>
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {activeCategory.capabilities.map((cap) => {
               const Icon = iconMap[cap.name] || FileTextIcon

@@ -32,7 +32,7 @@ const tiers = [
     description: "Foundation + the AI tools that transform how you draft, review, and prepare.",
     items: [
       "Everything in Foundation",
-      "OpenClaw AI assistant — configured for plaintiff PI/med mal, wired into Clio + Supio + Smith.ai",
+      "Custom AI assistant — configured for plaintiff PI/med mal, wired into Clio + Supio + Smith.ai",
       "EvenUp — account setup, record upload workflow, template configuration for demand types",
       "Supio — onboarding, record intake workflow, causation/deviation flagging configuration",
       "Skribe — deposition capture setup, transcript-to-RAG pipeline configuration",
@@ -75,7 +75,7 @@ const costTable = [
   { tool: "Skribe", cost: "~$349/hr live; ~$50-200/depo", note: "Per-deposition; no subscription" },
   { tool: "TrialPad", cost: "~$130 one-time", note: "iPad courtroom presentation" },
   { tool: "Microsoft Copilot", cost: "~$30/mo", note: "Email + Word AI (requires M365)" },
-  { tool: "OpenClaw", cost: "~$50/mo", note: "AI legal assistant (requires configuration)" },
+  { tool: "Custom AI Assistant", cost: "~$50/mo", note: "AI legal assistant (requires configuration)" },
   { tool: "Reviewly.ai", cost: "~$49-99/mo", note: "Google review monitoring" },
   { tool: "ChatGPT Pro", cost: "~$20/mo", note: "Content drafting" },
   { tool: "Jamie", cost: "~$24/mo", note: "Call transcription + case notes" },
@@ -91,7 +91,7 @@ const costTable = [
 const timelineSteps = [
   { week: "Week 1-2", title: "Discovery & Access", desc: "System credentials, current workflow review, Clio + Smith.ai configuration begins" },
   { week: "Week 2-4", title: "Core Setup", desc: "Intake pipeline live, deadline automation active, Case Status milestones configured" },
-  { week: "Week 4-6", title: "AI Layer", desc: "OpenClaw assistant configuration, EvenUp + Supio onboarding, document templates" },
+  { week: "Week 4-6", title: "AI Layer", desc: "AI assistant configuration, EvenUp + Supio onboarding, document templates" },
   { week: "Week 6-10", title: "Knowledge Databases", desc: "RAG builds, expert witness indexing, carrier playbook population (Full Stack only)" },
   { week: "Final Week", title: "Handoff", desc: "Staff training, documentation handoff, 30-day support period begins, completion invoice issued" },
 ]
@@ -103,74 +103,110 @@ export function PricingSection() {
     <section id="pricing" className="bg-surface px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          Section 5 &middot; Engagement & Pricing
+          Section 6 &middot; Engagement & Pricing
         </p>
         <h2 className="mb-5 font-serif text-3xl font-bold text-navy md:text-4xl text-balance">
           Three engagement tiers. Pick what fits.
         </h2>
-        <p className="mb-12 max-w-2xl font-sans text-sm leading-relaxed text-muted-foreground">
+        <p className="mb-8 max-w-2xl font-sans text-sm leading-relaxed text-muted-foreground">
           No locked packages. No required order. Start with what solves your most expensive
           problem first. Each tier includes configuration, integration, training, staff walkthrough
           (60-90 min), system documentation, and 30-day post-launch support.
         </p>
 
-        {/* Tier cards */}
+        {/* Tier cards — visually differentiated */}
         <div className="mb-16 grid gap-4 lg:grid-cols-3">
-          {tiers.map((tier) => (
-            <div
-              key={tier.id}
-              className={cn(
-                "relative flex flex-col rounded-sm border p-6 transition-all",
-                tier.highlight
-                  ? "border-gold bg-card shadow-md"
-                  : "border-border bg-card"
-              )}
-            >
-              {tier.highlight && (
-                <div className="absolute -top-px left-6 right-6 h-1 rounded-b-sm bg-gold" />
-              )}
+          {tiers.map((tier) => {
+            const isCore = tier.id === "core"
+            const isFullStack = tier.id === "full-stack"
+            return (
+              <div
+                key={tier.id}
+                className={cn(
+                  "relative flex flex-col rounded-sm border p-6 transition-all",
+                  isCore
+                    ? "border-gold bg-navy text-primary-foreground shadow-lg"
+                    : isFullStack
+                    ? "border-navy bg-surface-alt"
+                    : "border-border bg-card"
+                )}
+              >
+                {/* Top accent bar */}
+                {isCore && (
+                  <div className="absolute left-0 right-0 top-0 h-1.5 rounded-t-sm bg-gold" />
+                )}
+                {isFullStack && (
+                  <div className="absolute left-0 right-0 top-0 h-1.5 rounded-t-sm bg-navy" />
+                )}
 
-              <div className="mb-4">
-                <p className={cn(
-                  "mb-1 font-sans text-[10px] font-bold uppercase tracking-widest",
-                  tier.highlight ? "text-gold" : "text-muted-foreground"
+                <div className="mb-4">
+                  <p className={cn(
+                    "mb-1 font-sans text-[10px] font-bold uppercase tracking-widest",
+                    isCore ? "text-gold" : isFullStack ? "text-navy/60" : "text-muted-foreground"
+                  )}>
+                    {tier.tag}
+                  </p>
+                  <h3 className={cn(
+                    "font-serif text-xl font-bold",
+                    isCore ? "text-primary-foreground" : "text-navy"
+                  )}>{tier.name}</h3>
+                  <p className={cn(
+                    "mt-1 font-sans text-xs",
+                    isCore ? "text-primary-foreground/60" : "text-muted-foreground"
+                  )}>{tier.description}</p>
+                </div>
+
+                <div className="mb-5">
+                  <p className={cn(
+                    "font-serif font-bold",
+                    isCore ? "text-3xl text-gold" : "text-2xl text-navy"
+                  )}>
+                    {tier.monthlyCost}
+                  </p>
+                  <p className={cn(
+                    "font-sans text-xs",
+                    isCore ? "text-primary-foreground/50" : "text-muted-foreground"
+                  )}>monthly tool subscriptions</p>
+                </div>
+
+                <ul className="mb-6 flex flex-1 flex-col gap-2">
+                  {tier.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <Check className={cn(
+                        "mt-0.5 h-3.5 w-3.5 shrink-0",
+                        isCore ? "text-gold" : isFullStack ? "text-navy/60" : "text-muted-foreground"
+                      )} />
+                      <span className={cn(
+                        "font-sans text-xs leading-relaxed",
+                        isCore ? "text-primary-foreground/80" : "text-foreground"
+                      )}>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className={cn(
+                  "flex items-center gap-2 border-t pt-4",
+                  isCore ? "border-navy-mid" : "border-border"
                 )}>
-                  {tier.tag}
-                </p>
-                <h3 className="font-serif text-xl font-bold text-navy">{tier.name}</h3>
-                <p className="mt-1 font-sans text-xs text-muted-foreground">{tier.description}</p>
+                  <Clock className={cn(
+                    "h-3 w-3",
+                    isCore ? "text-primary-foreground/40" : "text-muted-foreground"
+                  )} />
+                  <p className={cn(
+                    "font-sans text-[11px]",
+                    isCore ? "text-primary-foreground/50" : "text-muted-foreground"
+                  )}>{tier.timeline}</p>
+                </div>
               </div>
-
-              <p className="mb-5 font-serif text-2xl font-bold text-navy">
-                {tier.monthlyCost}
-                <span className="ml-1 font-sans text-xs font-normal text-muted-foreground">tools</span>
-              </p>
-
-              <ul className="mb-6 flex flex-1 flex-col gap-2">
-                {tier.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <Check className={cn(
-                      "mt-0.5 h-3.5 w-3.5 shrink-0",
-                      tier.highlight ? "text-gold" : "text-muted-foreground"
-                    )} />
-                    <span className="font-sans text-xs leading-relaxed text-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex items-center gap-2 border-t border-border pt-4">
-                <Clock className="h-3 w-3 text-muted-foreground" />
-                <p className="font-sans text-[11px] text-muted-foreground">{tier.timeline}</p>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
-        {/* OpenClaw-first callout */}
+        {/* AI-first callout */}
         <div className="mb-12 rounded-sm border border-gold/20 bg-gold/5 p-5">
-          <p className="mb-1 font-sans text-xs font-bold text-gold">Want to start with OpenClaw first?</p>
+          <p className="mb-1 font-sans text-xs font-bold text-gold">Want to start with the AI assistant first?</p>
           <p className="font-sans text-xs leading-relaxed text-foreground">
-            If the AI assistant and knowledge layer are the priority, we can scope an OpenClaw-first
+            If the AI assistant and knowledge layer are the priority, we can scope an AI-first
             engagement — configure the assistant, build one or two RAG databases, and layer in the
             practice management tools afterward.
           </p>
@@ -204,7 +240,7 @@ export function PricingSection() {
             {timelineSteps.map((step, i) => (
               <div key={step.week} className="flex gap-4">
                 <div className="flex flex-col items-center">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-gold bg-card">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border-2 border-gold bg-card">
                     <span className="font-mono text-[10px] font-bold text-gold">{i + 1}</span>
                   </div>
                   {i < timelineSteps.length - 1 && (
@@ -299,16 +335,15 @@ export function PricingSection() {
           </div>
         </div>
 
-        {/* About OpenClaw Consulting */}
+        {/* About this engagement */}
         <div className="mt-6 rounded-sm border border-border bg-card p-5">
           <p className="mb-3 font-sans text-xs font-bold uppercase tracking-widest text-gold">
-            About OpenClaw Consulting
+            About This Engagement
           </p>
           <p className="mb-2 font-sans text-sm leading-relaxed text-foreground">
-            OpenClaw Consulting specializes in AI implementation for legal practices &mdash;
-            configuration, compliance, and workflow automation. Every tool in this proposal is
-            selected because it solves a specific problem for a solo plaintiff PI/med mal practice,
-            not because of a vendor relationship.
+            Every tool in this proposal is selected because it solves a specific problem for a solo
+            plaintiff PI/med mal practice, not because of a vendor relationship. Configuration,
+            compliance, and workflow automation are scoped to your practice specifically.
           </p>
           <p className="font-sans text-xs leading-relaxed text-muted-foreground">
             These are AI systems built specifically for your practice, using your cases, your experts,
@@ -318,16 +353,7 @@ export function PricingSection() {
           </p>
         </div>
 
-        {/* Fee note */}
-        <div className="mt-6 rounded-sm border border-border bg-card p-4">
-          <p className="font-sans text-xs leading-relaxed text-muted-foreground">
-            <span className="font-bold text-navy">Engagement fee</span> covers setup, configuration,
-            training, and optional ongoing support. Scope and pricing based on which tools and
-            services make sense for your practice. Payment: 50% deposit at project kickoff,
-            50% at deliverable handoff. Optional monthly retainer available for ongoing tuning,
-            new database additions, and priority support.
-          </p>
-        </div>
+
       </div>
     </section>
   )

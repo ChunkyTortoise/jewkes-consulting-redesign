@@ -9,12 +9,12 @@ const complianceItems = [
   {
     icon: Shield,
     title: "Citation Verification",
-    description: "OpenClaw's legal research configuration includes automatic citation verification against Westlaw/Casetext. All AI-generated research outputs are flagged if verification fails. Georgia courts have issued sanctions for AI-hallucinated citations.",
+    description: "The legal research configuration includes automatic citation verification against Westlaw/Casetext. All AI-generated research outputs are flagged if verification fails. Georgia courts have issued sanctions for AI-hallucinated citations.",
   },
   {
     icon: Lock,
     title: "Confidentiality",
-    description: "All client case data accessed during configuration handled per legal industry data security standards. OpenClaw Consulting will not retain, copy, or use any client case data for any purpose other than completing the deliverables.",
+    description: "All client case data accessed during configuration handled per legal industry data security standards. Cayman Roden will not retain, copy, or use any client case data for any purpose other than completing the deliverables.",
   },
   {
     icon: FileCheck,
@@ -36,11 +36,11 @@ const complianceItems = [
 const engagementTerms = [
   {
     title: "Intellectual Property",
-    content: "Upon receipt of full payment, all configured systems, templates, knowledge databases, and documentation are the property of The Jewkes Firm. OpenClaw retains the right to use general methodologies and non-client-specific frameworks.",
+    content: "Upon receipt of full payment, all configured systems, templates, knowledge databases, and documentation are the property of The Jewkes Firm. Cayman Roden retains the right to use general methodologies and non-client-specific frameworks.",
   },
   {
     title: "Limitation of Liability",
-    content: "OpenClaw is not responsible for case outcomes, third-party vendor performance issues, or any claim arising from failure to supervise AI outputs before use in legal proceedings.",
+    content: "Cayman Roden is not responsible for case outcomes, third-party vendor performance issues, or any claim arising from failure to supervise AI outputs before use in legal proceedings.",
   },
   {
     title: "Termination",
@@ -91,7 +91,7 @@ export function ComplianceSection() {
       <div className="mx-auto max-w-6xl">
         {/* Compliance header */}
         <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          Compliance &amp; Engagement Terms
+          Section 7 &middot; Compliance &amp; Engagement Terms
         </p>
         <h2 className="mb-5 font-serif text-3xl font-bold text-navy md:text-4xl text-balance">
           Georgia Bar compliant from day one.
@@ -146,9 +146,9 @@ export function ComplianceSection() {
               <div key={v.vendor} className="rounded-sm border border-border bg-card p-5">
                 <p className="mb-3 font-sans text-sm font-bold text-navy">{v.vendor}</p>
                 <ol className="flex flex-col gap-2">
-                  {v.questions.map((q, i) => (
-                    <li key={i} className="flex gap-2">
-                      <span className="shrink-0 font-mono text-[10px] font-bold text-gold">{i + 1}</span>
+                  {v.questions.map((q) => (
+                    <li key={q} className="flex gap-2">
+                      <span className="shrink-0 font-mono text-[10px] font-bold text-gold">{v.questions.indexOf(q) + 1}</span>
                       <span className="font-sans text-[11px] leading-relaxed text-muted-foreground">{q}</span>
                     </li>
                   ))}

@@ -5,28 +5,22 @@ export function Footer() {
         <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-gold">
-              <span className="font-serif text-sm font-bold text-navy">OC</span>
+              <span className="font-serif text-sm font-bold text-navy">CR</span>
             </div>
             <div>
-              <p className="font-serif text-sm font-bold text-gold-light">OpenClaw Consulting</p>
+              <p className="font-serif text-sm font-bold text-gold-light">Cayman Roden</p>
               <p className="font-sans text-[11px] text-primary-foreground/40">
-                Cayman Roden &middot; AI Integration Consultant
+                AI Integration Consultant
               </p>
             </div>
           </div>
 
           <div className="flex flex-col items-center gap-2 md:items-end">
             <a
-              href="mailto:cayman@openclaw.consulting"
+              href="mailto:caymanroden@gmail.com"
               className="font-sans text-xs text-gold/60 transition-colors hover:text-gold"
             >
-              cayman@openclaw.consulting
-            </a>
-            <a
-              href="https://openclaw.consulting"
-              className="font-sans text-[11px] text-primary-foreground/30 transition-colors hover:text-primary-foreground/50"
-            >
-              openclaw.consulting
+              caymanroden@gmail.com
             </a>
           </div>
         </div>

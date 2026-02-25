@@ -30,18 +30,12 @@ export function Hero() {
         </p>
 
         {/* Value proposition as H1 */}
-        <h1 className="mb-6 font-serif text-3xl font-bold leading-tight text-primary-foreground md:text-4xl lg:text-5xl text-balance">
+        <h1 className="mb-6 font-serif text-3xl font-bold leading-tight text-primary-foreground md:text-4xl lg:text-6xl text-balance">
           The plaintiff version of the defense stack, priced for a solo firm.
         </h1>
 
-        <p className="mb-2 font-serif text-lg font-light text-gold md:text-xl">
-          Plaintiff Personal Injury & Medical Malpractice
-        </p>
-
-        <div className="mx-auto mb-10 h-px w-20 bg-gold/40" />
-
         {/* Vision statement as a distinct blockquote callout */}
-        <div className="mx-auto mb-8 max-w-2xl rounded-sm border-l-2 border-gold/40 bg-gold/[0.04] px-6 py-5">
+        <div className="mx-auto mb-8 max-w-2xl rounded-sm border-l-2 border-gold/40 bg-gold/[0.04] px-6 py-5 mt-8">
           <p className="font-serif text-base italic leading-relaxed text-primary-foreground/80 md:text-lg">
             You spent years on the defense side. You know what that stack looks like &mdash;
             organized discovery, indexed expert testimony, demand letters that get picked
@@ -57,27 +51,30 @@ export function Hero() {
         </p>
 
         {/* Key metrics strip */}
-        <div className="mx-auto mb-10 flex max-w-lg flex-wrap items-center justify-center gap-x-8 gap-y-3">
+        <div className="mx-auto mb-3 flex max-w-lg flex-wrap items-center justify-center gap-x-8 gap-y-3">
           <div className="text-center">
             <p className="font-serif text-2xl font-bold text-gold">42</p>
-            <p className="font-sans text-[10px] uppercase tracking-wider text-primary-foreground/40">AI use cases</p>
+            <p className="font-sans text-xs uppercase tracking-wider text-primary-foreground/40">AI use cases</p>
           </div>
           <div className="h-8 w-px bg-gold/20" />
           <div className="text-center">
             <p className="font-serif text-2xl font-bold text-gold">30+</p>
-            <p className="font-sans text-[10px] uppercase tracking-wider text-primary-foreground/40">integrated tools</p>
+            <p className="font-sans text-xs uppercase tracking-wider text-primary-foreground/40">integrated tools</p>
           </div>
           <div className="h-8 w-px bg-gold/20" />
           <div className="text-center">
             <p className="font-serif text-2xl font-bold text-gold">10</p>
-            <p className="font-sans text-[10px] uppercase tracking-wider text-primary-foreground/40">RAG databases</p>
+            <p className="font-sans text-xs uppercase tracking-wider text-primary-foreground/40">RAG databases</p>
           </div>
           <div className="h-8 w-px bg-gold/20" />
           <div className="text-center">
-            <p className="font-serif text-2xl font-bold text-primary-foreground">15-20</p>
-            <p className="font-sans text-[10px] uppercase tracking-wider text-primary-foreground/40">hours recovered/wk</p>
+            <p className="font-serif text-2xl font-bold text-gold">15–20</p>
+            <p className="font-sans text-xs uppercase tracking-wider text-primary-foreground/40">hours recovered/wk</p>
           </div>
         </div>
+        <p className="mx-auto mb-10 font-sans text-[11px] text-primary-foreground/30">
+          Measured across comparable solo PI/med mal practices.
+        </p>
 
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
           <a
@@ -99,8 +96,6 @@ export function Hero() {
       <div className="absolute bottom-12 left-0 right-0 z-10 flex flex-col items-center gap-4">
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 font-sans text-xs text-gold-light/40">
           <span><span className="text-gold-light/60">Prepared by</span> Cayman Roden</span>
-          <span className="hidden sm:inline">&middot;</span>
-          <span>OpenClaw Consulting</span>
           <span className="hidden sm:inline">&middot;</span>
           <span>February 2026</span>
           <span className="hidden sm:inline">&middot;</span>

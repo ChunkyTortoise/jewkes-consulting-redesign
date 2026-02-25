@@ -7,10 +7,10 @@ import { Menu, X, ArrowUp } from "lucide-react"
 const navItems = [
   { label: "Overview", href: "#overview" },
   { label: "The Opportunity", href: "#opportunity" },
-  { label: "OpenClaw AI", href: "#openclaw" },
+  { label: "AI System", href: "#openclaw" },
   { label: "Tools", href: "#tools" },
   { label: "Deliverables", href: "#deliverables" },
-  { label: "Knowledge Bases", href: "#rag" },
+  { label: "Knowledge DBs", href: "#rag" },
   { label: "Pricing", href: "#pricing" },
   { label: "Compliance", href: "#compliance" },
   { label: "Next Steps", href: "#next-steps" },
@@ -87,10 +87,10 @@ export function Navigation() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <a href="#overview" className="flex items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-gold">
-              <span className="font-serif text-sm font-bold text-navy">OC</span>
+              <span className="font-serif text-sm font-bold text-navy">CR</span>
             </div>
             <span className="font-serif text-sm font-bold tracking-wide text-gold-light">
-              OpenClaw
+              Cayman Roden
             </span>
           </a>
 
@@ -114,10 +114,10 @@ export function Navigation() {
 
           <div className="flex items-center gap-4">
             <a
-              href="mailto:cayman@openclaw.consulting"
+              href="mailto:caymanroden@gmail.com"
               className="hidden text-xs font-sans font-medium text-gold/80 transition-colors hover:text-gold lg:block"
             >
-              cayman@openclaw.consulting
+              caymanroden@gmail.com
             </a>
 
             {/* Mobile menu toggle */}
@@ -153,11 +153,11 @@ export function Navigation() {
             ))}
             <div className="mt-6 h-px w-full max-w-xs bg-navy-mid" />
             <a
-              href="mailto:cayman@openclaw.consulting"
+              href="mailto:caymanroden@gmail.com"
               onClick={() => setMobileOpen(false)}
               className="mt-2 font-sans text-xs font-medium text-gold/60 transition-colors hover:text-gold"
             >
-              cayman@openclaw.consulting
+              caymanroden@gmail.com
             </a>
           </div>
         </div>

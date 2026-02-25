@@ -38,7 +38,7 @@ export function NextStepsSection() {
     <section id="next-steps" className="bg-navy px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          Section 6 &middot; Next Steps
+          Section 8 &middot; Next Steps
         </p>
         <h2 className="mb-12 font-serif text-3xl font-bold text-primary-foreground md:text-4xl text-balance">
           Tell me which problems matter most.
@@ -70,15 +70,15 @@ export function NextStepsSection() {
             problem first.
           </p>
           <a
-            href="mailto:cayman@openclaw.consulting"
+            href="mailto:caymanroden@gmail.com"
             className="inline-flex items-center gap-2 rounded-sm bg-gold px-8 py-3.5 font-sans text-sm font-semibold text-navy transition-all hover:bg-gold-light"
           >
             <Mail className="h-4 w-4" />
-            cayman@openclaw.consulting
+            caymanroden@gmail.com
             <ArrowRight className="h-4 w-4" />
           </a>
           <p className="mt-4 font-sans text-xs text-primary-foreground/30">
-            Cayman Roden &middot; AI Integration Consultant &middot; OpenClaw Consulting
+            Cayman Roden &middot; AI Integration Consultant
           </p>
         </div>
       </div>
