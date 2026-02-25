@@ -1,4 +1,7 @@
+"use client"
+
 import { Scale, Shield, FileCheck, Lock, Eye, AlertTriangle } from "lucide-react"
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const complianceItems = [
   {
@@ -86,25 +89,39 @@ const vendorQuestions = [
 ]
 
 export function ComplianceSection() {
+  const headerRef     = useScrollReveal()
+  const gridRef       = useScrollReveal()
+  const termsRef      = useScrollReveal()
+  const vendorRef     = useScrollReveal()
+
   return (
-    <section id="compliance" className="bg-surface-alt px-6 py-24">
+    <section id="compliance" className="relative bg-surface-alt px-6 py-24">
+      {/* Gold hairline — separates from adjacent light section */}
+      <div className="absolute left-0 right-0 top-0 h-px bg-gold/20" />
+
       <div className="mx-auto max-w-6xl">
-        {/* Compliance header */}
-        <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          Section 7 &middot; Compliance &amp; Engagement Terms
-        </p>
-        <h2 className="mb-5 font-serif text-3xl font-bold text-navy md:text-4xl text-balance">
-          Georgia Bar compliant from day one.
-        </h2>
-        <p className="mb-12 max-w-2xl font-sans text-sm leading-relaxed text-muted-foreground">
-          This is a technology consulting engagement. Nothing in this agreement constitutes legal
-          advice. Every tool is selected with the Georgia Rules of Professional Conduct in mind.
-        </p>
+
+        {/* Header */}
+        <div ref={headerRef}>
+          <p className="reveal mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+            Section 7 &middot; Compliance &amp; Engagement Terms
+          </p>
+          <h2 className="reveal reveal-delay-1 mb-5 font-serif text-3xl font-bold text-navy text-balance md:text-4xl">
+            Georgia Bar compliant from day one.
+          </h2>
+          <p className="reveal reveal-delay-2 mb-12 max-w-2xl font-sans text-sm leading-relaxed text-muted-foreground">
+            This is a technology consulting engagement. Nothing in this agreement constitutes legal
+            advice. Every tool is selected with the Georgia Rules of Professional Conduct in mind.
+          </p>
+        </div>
 
         {/* Compliance grid */}
-        <div className="mb-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {complianceItems.map((item) => (
-            <div key={item.title} className="rounded-sm border border-border bg-card p-5">
+        <div className="mb-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3" ref={gridRef}>
+          {complianceItems.map((item, i) => (
+            <div
+              key={item.title}
+              className={`reveal reveal-delay-${(i % 4) + 1} rounded-sm border border-border bg-card p-5 transition-all hover:border-gold/20 hover:shadow-sm`}
+            >
               <item.icon className="mb-3 h-5 w-5 text-gold" />
               <p className="mb-2 font-sans text-sm font-bold text-navy">{item.title}</p>
               <p className="font-sans text-xs leading-relaxed text-muted-foreground">{item.description}</p>
@@ -113,13 +130,16 @@ export function ComplianceSection() {
         </div>
 
         {/* Engagement terms */}
-        <div className="mb-16">
-          <p className="mb-6 font-sans text-xs font-semibold uppercase tracking-[0.15em] text-navy/60">
+        <div className="mb-16" ref={termsRef}>
+          <p className="reveal mb-6 font-sans text-xs font-semibold uppercase tracking-[0.15em] text-navy/60">
             Key Engagement Terms
           </p>
           <div className="grid gap-3 md:grid-cols-2">
-            {engagementTerms.map((term) => (
-              <div key={term.title} className="rounded-sm border border-border bg-card p-4">
+            {engagementTerms.map((term, i) => (
+              <div
+                key={term.title}
+                className={`reveal reveal-delay-${(i % 3) + 1} rounded-sm border border-border bg-card p-4 transition-all hover:border-gold/15`}
+              >
                 <p className="mb-1 font-sans text-xs font-bold text-navy">{term.title}</p>
                 <p className="font-sans text-[11px] leading-relaxed text-muted-foreground">{term.content}</p>
               </div>
@@ -132,23 +152,26 @@ export function ComplianceSection() {
         </div>
 
         {/* Vendor discovery questions */}
-        <div>
-          <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.15em] text-navy/60">
+        <div ref={vendorRef}>
+          <p className="reveal mb-3 font-sans text-xs font-semibold uppercase tracking-[0.15em] text-navy/60">
             Appendix &middot; Questions to Ask Each Vendor
           </p>
-          <p className="mb-6 font-sans text-xs text-muted-foreground">
+          <p className="reveal reveal-delay-1 mb-6 font-sans text-xs text-muted-foreground">
             Before committing to any of the top three tools, here are the questions worth asking
             during a discovery call. Each one surfaces something a vendor pitch won{"'"}t tell you.
           </p>
 
           <div className="grid gap-4 lg:grid-cols-3">
-            {vendorQuestions.map((v) => (
-              <div key={v.vendor} className="rounded-sm border border-border bg-card p-5">
+            {vendorQuestions.map((v, vi) => (
+              <div
+                key={v.vendor}
+                className={`reveal reveal-delay-${vi + 1} rounded-sm border border-border bg-card p-5 transition-all hover:border-gold/15`}
+              >
                 <p className="mb-3 font-sans text-sm font-bold text-navy">{v.vendor}</p>
                 <ol className="flex flex-col gap-2">
-                  {v.questions.map((q) => (
-                    <li key={q} className="flex gap-2">
-                      <span className="shrink-0 font-mono text-[10px] font-bold text-gold">{v.questions.indexOf(q) + 1}</span>
+                  {v.questions.map((q, qi) => (
+                    <li key={qi} className="flex gap-2">
+                      <span className="shrink-0 font-mono text-[10px] font-bold text-gold">{qi + 1}</span>
                       <span className="font-sans text-[11px] leading-relaxed text-muted-foreground">{q}</span>
                     </li>
                   ))}

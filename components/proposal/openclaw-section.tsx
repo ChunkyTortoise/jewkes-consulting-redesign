@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { cn } from "@/lib/utils"
 import {
   Users, FileEdit, Brain, TrendingUp,
@@ -135,7 +135,14 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export function OpenClawSection() {
   const [activeTab, setActiveTab] = useState("client")
+  const [gridKey, setGridKey] = useState(0)
   const activeCategory = categories.find(c => c.id === activeTab) ?? categories[0]
+
+  const handleTabChange = (id: string) => {
+    if (id === activeTab) return
+    setActiveTab(id)
+    setGridKey(k => k + 1)
+  }
 
   return (
     <section id="openclaw" className="bg-navy px-6 py-24">
@@ -206,7 +213,7 @@ export function OpenClawSection() {
           {categories.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => setActiveTab(cat.id)}
+              onClick={() => handleTabChange(cat.id)}
               className={cn(
                 "flex items-center gap-2.5 rounded-sm px-5 py-3 font-sans text-sm font-bold transition-all",
                 activeTab === cat.id
@@ -238,7 +245,8 @@ export function OpenClawSection() {
 
         {/* Always-visible grid for active tab — with category color top-border accent */}
         <div
-          className="rounded-sm border border-navy-mid bg-navy/60 p-4"
+          key={gridKey}
+          className="animate-[fadeSlideIn_0.22s_ease-out_both] rounded-sm border border-navy-mid bg-navy/60 p-4"
           style={{ borderTopColor: activeCategory.color, borderTopWidth: '3px', borderTopStyle: 'solid' }}
         >
           <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-widest" style={{ color: activeCategory.color }}>
