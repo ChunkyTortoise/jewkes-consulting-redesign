@@ -7,7 +7,7 @@ import {
   Shield, Search, BarChart3, Car, UserSearch, Mic, Presentation, Brain,
   BookOpen, Briefcase, Star, Megaphone, Monitor, Volume2, PhoneCall,
   Receipt, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Award,
-  Banknote, Newspaper, Mail, Scale
+  Banknote, Newspaper, Mail, Scale, Sparkles, Gavel
 } from "lucide-react"
 
 type Tool = {
@@ -87,6 +87,13 @@ const problemAreas: ProblemArea[] = [
     title: "Demand Letters & Record Review",
     problem: "Demand letters take 5-15 hours and medical records take weeks to organize.",
     tools: [
+      {
+        name: "Eve Legal",
+        description: "AI platform built exclusively for plaintiff firms — $150M funded, 450+ firms, 200K+ cases/year. Eve 2.0 covers the entire case lifecycle: AI voice intake agent qualifies leads 24/7, Agents draft medical chronologies and demand letters in your voice, Auditor monitors every case for missed injuries and deadline risks, Analyst surfaces firm-wide ROI by case type. Integrates with Clio and Filevine. Firms report 250% YoY revenue growth. Custom pricing — demo required at eve.legal.",
+        cost: "Custom (demo required)",
+        icon: Sparkles,
+        tag: "Schedule Demo",
+      },
       {
         name: "EvenUp",
         description: "AI platform built for plaintiff PI. Upload medical records, get a structured demand letter trained on 250,000+ verdicts and settlements. Firms report 20-30% higher settlements. Georgia venue caveat: valuations are most accurate in data-dense jurisdictions like Fulton/DeKalb. For Fayette, Spalding, and Troup counties, treat valuations as directional.",
@@ -173,6 +180,13 @@ const problemAreas: ProblemArea[] = [
     title: "Legal Research & Case Intelligence",
     problem: "Research takes hours and you don't know what a case is worth until deep into it.",
     tools: [
+      {
+        name: "OpenCase Pro",
+        description: "AI legal research built directly into Microsoft Word. As you draft, OpenCase surfaces Georgia and federal case law, validates Bluebook citations in real time, and flags weak arguments before they leave your desk. Data from Cornell LII, RECAP dockets, and govinfo PDFs — updated daily. Free tier available; Pro at $82/mo vs. Westlaw at $200-400+/mo. 3-day free trial. Install the Word add-in today and use it on your next brief.",
+        cost: "$82/mo (Pro) or Free",
+        icon: Gavel,
+        tag: "Quick Win",
+      },
       {
         name: "Fastcase + CoCounsel",
         description: "Fastcase free via Georgia Bar. CoCounsel adds AI research memos, citation verification, deposition analysis, and cross-examination outlines. Feed it the complaint, answer, and key records -- it produces a cross-examination outline for trial prep.",
@@ -335,9 +349,9 @@ const problemAreas: ProblemArea[] = [
         icon: Star,
       },
       {
-        name: "ChatGPT Pro (Content)",
-        description: "Content drafting for blog posts, practice area pages, and social media. All content must comply with Georgia Rules 7.1-7.5 on attorney advertising.",
-        cost: "~$20/mo",
+        name: "ChatGPT Plus",
+        description: "Drafting correspondence, brainstorming case angles, summarizing calls, and content for blogs and social. ChatGPT Plus at $20/mo covers 90%+ of needs — Pro ($200/mo) only adds value if doing hours of Deep Research daily. Critical: never use for case citations or legal research — hallucination rates run 17-34%. All output must be verified. All content must comply with Georgia Rules 7.1-7.5.",
+        cost: "~$20/mo (Plus) or $200/mo (Pro)",
         icon: Megaphone,
       },
       {
@@ -383,7 +397,7 @@ export function ToolsSection() {
         </div>
 
         {/* Recommendation callout */}
-        <div className="mb-12 rounded-sm border-l-4 border-gold bg-card p-5 shadow-sm">
+        <div className="mb-6 rounded-sm border-l-4 border-gold bg-card p-5 shadow-sm">
           <p className="mb-1 font-sans text-xs font-bold uppercase tracking-widest text-gold">
             If you only do one thing after this conversation
           </p>
@@ -398,6 +412,28 @@ export function ToolsSection() {
           </p>
           <p className="mt-2 font-sans text-xs text-muted-foreground">
             Cost: ~$370/mo &middot; Timeline: 2-3 weeks to your first captured after-hours lead
+          </p>
+        </div>
+
+        {/* Eve Legal spotlight */}
+        <div className="mb-12 rounded-sm border border-gold/40 bg-navy p-5 shadow-sm">
+          <div className="mb-2 flex items-center gap-2">
+            <Sparkles className="h-4 w-4 text-gold" />
+            <p className="font-sans text-xs font-bold uppercase tracking-widest text-gold">
+              Platform to Watch &mdash; Eve Legal
+            </p>
+          </div>
+          <p className="mb-1 font-sans text-sm font-bold text-primary-foreground">
+            $150M funded. Built for plaintiff firms. Covers intake through resolution.
+          </p>
+          <p className="font-sans text-sm leading-relaxed text-primary-foreground/70">
+            Eve is the only platform purpose-built for plaintiff PI and employment law at this
+            funding level. If a single tool could replace intake staff, a paralegal, and your
+            demand letter workflow, this is it. Worth scheduling a demo before committing to
+            any other stack.
+          </p>
+          <p className="mt-2 font-sans text-xs text-primary-foreground/40">
+            eve.legal &middot; Custom pricing &middot; Integrates with Clio &amp; Filevine
           </p>
         </div>
 
