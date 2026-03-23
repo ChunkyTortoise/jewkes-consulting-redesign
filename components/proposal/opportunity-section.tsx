@@ -1,4 +1,7 @@
+"use client"
+
 import { Clock, FileText, Shield, AlertTriangle, Stethoscope, XCircle, Info } from "lucide-react"
+import { FadeInSection, FadeInItem } from "@/components/motion/fade-in-section"
 
 const problems = [
   {
@@ -32,7 +35,7 @@ const problems = [
   {
     icon: Stethoscope,
     title: "Medical record review takes weeks",
-    description: "Supio reduces 500-page reviews to hours with causation flags, standard-of-care deviations, and treatment gap identification. One firm saved 437 hours across six cases.",
+    description: "Eve Legal + pre-lit workflow map built in Foundation identifies where your record review is slowest — and whether Eve's current configuration is solving it. Medical chronology upgrade (Tavrn or Superinsight.ai) is a Tier 2 deliverable once the audit identifies the gap.",
     stat: "90%",
     statLabel: "faster case prep",
   },
@@ -65,7 +68,7 @@ const outOfScope = [
   "E-filing automation — Georgia county-specific filing systems vary significantly; evaluate after Clio is fully configured.",
   "Virtual paralegal / staffing recommendations — can be addressed separately once you know what the automation covers.",
   "Physical mail and service of process tracking — outside the scope of this engagement.",
-  "Firm website redesign — Intaker handles chat capture; site design is a separate engagement.",
+  "AI intake service (Smith.ai, Hona) — evaluated after Foundation audit determines whether lead volume justifies it at your caseload.",
   "Billing and collections automation — Clio handles invoicing; collections strategy is outside this scope.",
 ]
 
@@ -109,22 +112,21 @@ export function OpportunitySection() {
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <FadeInSection className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" staggerChildren={0.09}>
           {problems.map((p) => (
-            <div
-              key={p.title}
-              className="group flex flex-col rounded-sm border border-border bg-card p-5 transition-all hover:border-gold/30 hover:shadow-sm"
-            >
-              <p.icon className="mb-4 h-5 w-5 text-gold" />
-              <p className="mb-1 font-serif text-2xl font-bold text-navy">{p.stat}</p>
-              <p className="mb-3 font-sans text-xs text-muted-foreground">{p.statLabel}</p>
-              <h3 className="mb-2 font-sans text-sm font-bold text-navy">{p.title}</h3>
-              <p className="mt-auto font-sans text-xs leading-relaxed text-muted-foreground">
-                {p.description}
-              </p>
-            </div>
+            <FadeInItem key={p.title}>
+              <div className="group flex h-full flex-col rounded-sm border border-border bg-card p-5 transition-all hover:border-gold/30 hover:shadow-sm">
+                <p.icon className="mb-4 h-5 w-5 text-gold" />
+                <p className="mb-1 font-serif text-2xl font-bold text-navy">{p.stat}</p>
+                <p className="mb-3 font-sans text-xs text-muted-foreground">{p.statLabel}</p>
+                <h3 className="mb-2 font-sans text-sm font-bold text-navy">{p.title}</h3>
+                <p className="mt-auto font-sans text-xs leading-relaxed text-muted-foreground">
+                  {p.description}
+                </p>
+              </div>
+            </FadeInItem>
           ))}
-        </div>
+        </FadeInSection>
 
         {/* Key economics callout */}
         <div className="mt-12 rounded-sm border border-gold/20 bg-navy p-6 md:p-8">
@@ -134,10 +136,10 @@ export function OpportunitySection() {
                 Full-Stack Economics
               </p>
               <p className="font-sans text-sm leading-relaxed text-primary-foreground/80">
-                At average usage across all tools, expect approximately{" "}
-                <span className="font-bold text-gold">$1,350-2,500/mo</span> in subscriptions &mdash; roughly{" "}
-                <span className="font-bold text-primary-foreground">30-40%</span> of what a single full-time paralegal costs
-                in Peachtree City (~$4,500-5,500/mo), while covering intake, communication, record review,
+                Foundation: <span className="font-bold text-gold">$20-102/mo in new tools</span>. Full stack:{" "}
+                <span className="font-bold text-gold">$490-962/mo</span> vs.{" "}
+                <span className="font-bold text-primary-foreground">$4,000-5,200/mo</span> for a paralegal
+                in rural Georgia &mdash; covering intake, communication, record review,
                 research, drafting, trial prep, and case closing.
               </p>
             </div>

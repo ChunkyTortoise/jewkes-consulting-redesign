@@ -1,4 +1,8 @@
+"use client"
+
 import { ArrowDown } from "lucide-react"
+import { motion } from "framer-motion"
+import { FadeInSection, FadeInItem } from "@/components/motion/fade-in-section"
 
 export function Hero() {
   return (
@@ -19,85 +23,111 @@ export function Hero() {
         <div className="absolute bottom-24 right-8 h-16 w-16 border-b border-r border-gold/[0.08]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-3xl">
+      <motion.div
+        className="relative z-10 mx-auto max-w-3xl"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
+        }}
+      >
         {/* Firm name as subtitle */}
-        <p className="mb-3 font-sans text-xs font-medium uppercase tracking-[0.3em] text-gold">
+        <motion.p
+          className="mb-3 font-sans text-xs font-medium uppercase tracking-[0.3em] text-gold"
+          variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+        >
           AI Integration Strategy
-        </p>
+        </motion.p>
 
-        <p className="mb-6 font-sans text-sm text-gold-light/60">
+        <motion.p
+          className="mb-6 font-sans text-sm text-gold-light/60"
+          variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+        >
           Prepared for The Jewkes Firm, LLC &middot; Tyrone &middot; Griffin &middot; LaGrange, Georgia
-        </p>
+        </motion.p>
 
         {/* Value proposition as H1 */}
-        <h1 className="mb-6 font-serif text-3xl font-bold leading-tight text-primary-foreground md:text-4xl lg:text-6xl text-balance">
+        <motion.h1
+          className="mb-6 font-serif text-3xl font-bold leading-tight text-primary-foreground md:text-4xl lg:text-6xl text-balance"
+          variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}
+        >
           The plaintiff version of the defense stack, priced for a solo firm.
-        </h1>
+        </motion.h1>
 
         {/* Vision statement as a distinct blockquote callout */}
-        <div className="mx-auto mb-8 max-w-2xl rounded-sm border-l-2 border-gold/40 bg-gold/[0.04] px-6 py-5 mt-8">
+        <motion.div
+          className="mx-auto mb-8 max-w-2xl rounded-sm border-l-2 border-gold/40 bg-gold/[0.04] px-6 py-5 mt-8"
+          variants={{ hidden: { opacity: 0, x: -16 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}
+        >
           <p className="font-serif text-base italic leading-relaxed text-primary-foreground/80 md:text-lg">
             You spent years on the defense side. You know what that stack looks like &mdash;
             organized discovery, indexed expert testimony, demand letters that get picked
             apart before they{"'"}re answered. This is the plaintiff version of that
             infrastructure, available right now.
           </p>
-        </div>
+        </motion.div>
 
-        <p className="mx-auto mb-10 max-w-xl font-sans text-sm leading-relaxed text-primary-foreground/50">
-          A full AI and automation menu &mdash; intake, communication, record review, research,
-          drafting, trial prep, and case closing. Every item is standalone. Pick what matches
-          your biggest pain points. No locked packages, no required order.
-        </p>
+        <motion.p
+          className="mx-auto mb-10 max-w-xl font-sans text-sm leading-relaxed text-primary-foreground/50"
+          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.5 } } }}
+        >
+          Three engagement tiers. Start with Foundation &mdash; one week, $1,000, ten deliverables &mdash; then decide.
+        </motion.p>
 
-        {/* Key metrics strip */}
-        <div className="mx-auto mb-3 flex max-w-lg flex-wrap items-center justify-center gap-x-8 gap-y-3">
-          <div className="text-center">
-            <p className="font-serif text-2xl font-bold text-gold">42</p>
-            <p className="font-sans text-xs uppercase tracking-wider text-primary-foreground/40">AI use cases</p>
-          </div>
-          <div className="h-8 w-px bg-gold/20" />
-          <div className="text-center">
-            <p className="font-serif text-2xl font-bold text-gold">30+</p>
-            <p className="font-sans text-xs uppercase tracking-wider text-primary-foreground/40">integrated tools</p>
-          </div>
-          <div className="h-8 w-px bg-gold/20" />
-          <div className="text-center">
-            <p className="font-serif text-2xl font-bold text-gold">10</p>
-            <p className="font-sans text-xs uppercase tracking-wider text-primary-foreground/40">RAG databases</p>
-          </div>
-          <div className="h-8 w-px bg-gold/20" />
-          <div className="text-center">
-            <p className="font-serif text-2xl font-bold text-gold">15–20</p>
-            <p className="font-sans text-xs uppercase tracking-wider text-primary-foreground/40">hours recovered/wk</p>
-          </div>
-        </div>
-        <p className="mx-auto mb-10 font-sans text-[11px] text-primary-foreground/30">
+        {/* Key metrics strip — staggered */}
+        <motion.div
+          className="mx-auto mb-3 flex max-w-lg flex-wrap items-center justify-center gap-x-8 gap-y-3"
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
+        >
+          {[
+            { value: "10", label: "deliverables" },
+            { value: "1", label: "week complete" },
+            { value: "3", label: "engagement tiers" },
+            { value: "15–20", label: "hours recovered/wk" },
+          ].map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              className="text-center"
+              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
+            >
+              <p className="font-serif text-2xl font-bold text-gold">{stat.value}</p>
+              <p className="font-sans text-xs uppercase tracking-wider text-primary-foreground/40">{stat.label}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+        <motion.p
+          className="mx-auto mb-10 font-sans text-[11px] text-primary-foreground/30"
+          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.4 } } }}
+        >
           Measured across comparable solo PI/med mal practices.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
+        <motion.div
+          className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center"
+          variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+        >
           <a
-            href="#tools"
+            href="#pricing"
             className="inline-flex items-center gap-2 rounded-sm bg-gold px-6 py-3 font-sans text-sm font-semibold text-navy transition-all hover:bg-gold-light"
           >
-            Explore the Stack
+            See Foundation Package
           </a>
           <a
             href="#pricing"
             className="inline-flex items-center gap-2 rounded-sm border border-gold/30 px-6 py-3 font-sans text-sm font-medium text-gold-light transition-all hover:border-gold/60 hover:text-gold"
           >
-            View Engagement Tiers
+            View All Three Tiers
           </a>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Meta block */}
       <div className="mt-auto left-0 right-0 z-10 flex flex-col items-center gap-4 pt-10">
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 font-sans text-xs text-gold-light/40">
           <span><span className="text-gold-light/60">Prepared by</span> Cayman Roden</span>
           <span className="hidden sm:inline">&middot;</span>
-          <span>February 2026</span>
+          <span>March 2026</span>
           <span className="hidden sm:inline">&middot;</span>
           <span>Confidential</span>
         </div>

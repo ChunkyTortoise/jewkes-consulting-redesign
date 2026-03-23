@@ -1,0 +1,101 @@
+/**
+ * Jewkes Consulting Design Tokens
+ * Source of truth for colors, typography, spacing, and radii.
+ * AI agents: always read this file before modifying any UI component.
+ *
+ * Brand: Navy + Gold (professional consulting aesthetic)
+ * Framework: Tailwind CSS v4 with OKLCH color space
+ */
+
+:root {
+  /* ── Brand palette ──────────────────────────────────────────────────── */
+  --color-navy:        #0a1628;   /* primary brand — dark navy */
+  --color-navy-mid:    #1e3a5f;   /* mid-tone navy — accents, borders */
+  --color-gold:        #c8a84b;   /* primary accent — CTA, links */
+  --color-gold-light:  #d4ba6a;   /* hover state for gold */
+
+  /* ── Surface (light mode) ───────────────────────────────────────────── */
+  --color-surface:     #f8f8f6;   /* page background */
+  --color-surface-alt: #f0efe8;   /* card / elevated surface */
+  --color-border:      #e0ddd5;   /* default border */
+
+  /* ── Surface (dark mode) — see .dark override below ────────────────── */
+  /* --color-surface:   #0a1628 */
+  /* --color-surface-alt: #0f1f38 */
+  /* --color-border:    #1e3a5f */
+
+  /* ── Text ───────────────────────────────────────────────────────────── */
+  --color-text-primary:   #1a1a2e;   /* headings */
+  --color-text-body:      #374151;   /* body copy */
+  --color-text-muted:     #6b7280;   /* captions, secondary labels */
+  --color-text-inverse:   #f8f8f6;   /* text on dark surfaces */
+
+  /* ── Semantic layer ─────────────────────────────────────────────────── */
+  --color-action-primary:        var(--color-gold);
+  --color-action-primary-hover:  var(--color-gold-light);
+  --color-action-on-primary:     var(--color-navy);
+
+  --color-brand-bg:      var(--color-navy);
+  --color-brand-fg:      var(--color-surface);
+
+  /* ── Charts ─────────────────────────────────────────────────────────── */
+  --color-chart-1: #c8a84b;   /* gold */
+  --color-chart-2: #1e3a5f;   /* navy-mid */
+  --color-chart-3: #60a5fa;   /* sky blue */
+  --color-chart-4: #2dd4bf;   /* teal */
+  --color-chart-5: #a78bfa;   /* violet */
+
+  /* ── Typography ─────────────────────────────────────────────────────── */
+  --font-sans:    'Lato', sans-serif;       /* body */
+  --font-display: 'Merriweather', serif;    /* headings */
+
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.25rem;    /* 20px */
+  --text-2xl:  1.5rem;     /* 24px */
+  --text-3xl:  1.875rem;   /* 30px */
+  --text-4xl:  2.25rem;    /* 36px */
+
+  /* ── Spacing ─────────────────────────────────────────────────────────── */
+  --space-1:  0.25rem;   /* 4px */
+  --space-2:  0.5rem;    /* 8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+
+  /* ── Radii ───────────────────────────────────────────────────────────── */
+  --radius-sm:  0.125rem;   /* 2px */
+  --radius:     0.25rem;    /* 4px — default (sharp, professional) */
+  --radius-md:  0.375rem;   /* 6px */
+  --radius-lg:  0.5rem;     /* 8px */
+  --radius-xl:  0.75rem;    /* 12px */
+  --radius-full: 9999px;    /* pill */
+
+  /* ── Shadows ─────────────────────────────────────────────────────────── */
+  --shadow-sm:  0 1px 2px rgba(10, 22, 40, 0.06);
+  --shadow:     0 2px 8px rgba(10, 22, 40, 0.10);
+  --shadow-md:  0 4px 16px rgba(10, 22, 40, 0.14);
+  --shadow-lg:  0 8px 32px rgba(10, 22, 40, 0.18);
+
+  /* ── Motion ─────────────────────────────────────────────────────────── */
+  --duration-fast:   150ms;
+  --duration-base:   250ms;
+  --duration-slow:   450ms;
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);   /* spring-like exit */
+  --ease-in:   cubic-bezier(0.4, 0, 1, 1);
+}
+
+.dark {
+  --color-surface:     #0a1628;
+  --color-surface-alt: #0f1f38;
+  --color-border:      #1e3a5f;
+  --color-text-primary:  #f8f8f6;
+  --color-text-body:     #e2e8f0;
+  --color-text-muted:    #94a3b8;
+  --color-action-primary: #c8a84b;
+}

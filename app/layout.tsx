@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Lato, Merriweather } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { CommandPalette } from '@/components/proposal/command-palette'
 import './globals.css'
 
 const lato = Lato({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-lato" });
@@ -48,6 +49,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${lato.variable} ${merriweather.variable} font-sans antialiased`}>
         {children}
+        <CommandPalette />
         <Analytics />
       </body>
     </html>
