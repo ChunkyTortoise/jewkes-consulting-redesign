@@ -399,19 +399,17 @@ export function ToolsSection() {
         {/* Recommendation callout */}
         <div className="mb-6 rounded-sm border-l-4 border-gold bg-card p-5 shadow-sm">
           <p className="mb-1 font-sans text-xs font-bold uppercase tracking-widest text-gold">
-            If you only do one thing after this conversation
+            If you do one thing
           </p>
           <p className="mb-2 font-sans text-sm font-bold text-navy">
-            Clio Grow + Smith.ai &mdash; the intake foundation.
+            Start with Foundation.
           </p>
           <p className="font-sans text-sm leading-relaxed text-foreground">
-            Every other tool in this document connects to Clio. And every call that hits voicemail
-            after hours is a lead you{"'"}ve already lost &mdash; invisibly, with no record that it happened.
-            Clio gives you the foundation everything else feeds into. Smith.ai fills the after-hours gap
-            and puts qualified leads into your pipeline while you sleep.
+            Claude configured for your practice, every deadline automated, Eve audited, and a written roadmap &mdash; in one week.
+            Ten deliverables. $1,000 flat. You keep everything whether or not we go further.
           </p>
           <p className="mt-2 font-sans text-xs text-muted-foreground">
-            Cost: ~$370/mo &middot; Timeline: 2-3 weeks to your first captured after-hours lead
+            Consulting fee: $1,000 flat &middot; New tool costs: $20-102/mo &middot; Timeline: everything live in 1 week
           </p>
         </div>
 

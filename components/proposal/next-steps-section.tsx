@@ -14,7 +14,7 @@ const steps = [
   {
     number: "03",
     title: "I send the agreement",
-    description: "One or two pages. Plain language. Deliverables, timeline, and fee. Foundation, Core Practice, or Full Stack -- or a custom scope. You sign, we start.",
+    description: "One or two pages. Plain language. Deliverables, timeline, and fee. Foundation, Practice Automation, or Knowledge + Intelligence -- or a custom scope. You sign, we start.",
   },
   {
     number: "04",

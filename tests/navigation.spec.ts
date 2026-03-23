@@ -28,7 +28,7 @@ test.describe("Navigation", () => {
 
   test("hero section has CTA buttons", async ({ page }) => {
     await page.goto("/");
-    const exploreLink = page.getByRole("link", { name: /explore the stack/i });
+    const exploreLink = page.getByRole("link", { name: /see foundation package/i });
     await expect(exploreLink).toBeVisible();
   });
 
