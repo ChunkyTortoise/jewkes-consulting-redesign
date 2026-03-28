@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { motion, useInView, type Variants } from "framer-motion"
 
 interface FadeInSectionProps {
   children: React.ReactNode
@@ -19,7 +19,7 @@ const containerVariants = (stagger: number) => ({
   },
 })
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
