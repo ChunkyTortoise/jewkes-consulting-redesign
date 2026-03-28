@@ -1,4 +1,4 @@
-![Tests](https://img.shields.io/badge/tests-4%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-20%20passing-brightgreen)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-14-black)
 ![Vercel](https://img.shields.io/badge/Vercel-live-brightgreen)
